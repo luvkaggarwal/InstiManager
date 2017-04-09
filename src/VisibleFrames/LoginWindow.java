@@ -201,20 +201,20 @@ public class LoginWindow extends javax.swing.JFrame {
                 }
                 else if( rs.getString("job").equals("teacher") ){
                     close();
-                    //teacherHome frame = new teacherHome();
-                    //frame.setLocationRelativeTo(null);
-                    //frame.setVisible(true);
+                    teacherHome frame = new teacherHome();
+                    frame.setLocationRelativeTo(null);
+                    frame.setVisible(true);
                 }
                 else if( rs.getString("job").equals("parent") ){
                     close();
-                    //parentHome frame = new parentHome();
-                    //frame.setLocationRelativeTo(null);
-                    //frame.setVisible(true);
+                    parentHome frame = new parentHome();
+                    frame.setLocationRelativeTo(null);
+                    frame.setVisible(true);
                 }else if( rs.getString("job").equals("accounts") ){
                     close();
-                    //accountsHome frame = new accountsHome();
-                    //frame.setLocationRelativeTo(null);
-                    //frame.setVisible(true);
+                    accountsHome frame = new accountsHome();
+                    frame.setLocationRelativeTo(null);
+                    frame.setVisible(true);
                 }else if( rs.getString("job").equals("management") ){
                     close();
                     adminHome frame = new adminHome();
@@ -227,8 +227,9 @@ public class LoginWindow extends javax.swing.JFrame {
                     frame.setVisible(true);
                 }else {
                     close();
-                    //logisticsHome frame = new logiscticsHome();
-                    //frame.setVisible(true);
+                    logisticsHome frame = new logisticsHome();
+                    frame.setLocationRelativeTo(null);
+                    frame.setVisible(true);
                 }
             }
             else
