@@ -31,7 +31,7 @@ public class LoginWindow extends javax.swing.JFrame {
      */
     public LoginWindow() {
         this.setLayout( new BorderLayout() ); 
-        this.setContentPane( new JLabel( new ImageIcon ( "C:\\Users\\LUV\\Documents\\NetBeansProjects\\Project\\Images\\Login_background.jpg" ) ) );
+        //this.setContentPane( new JLabel( new ImageIcon ( "C:\\Users\\LUV\\Documents\\NetBeansProjects\\Project\\Images\\Login_background.jpg" ) ) );
         this.setLayout( new FlowLayout() );
         initComponents();
         conn = FunctionClasses.DataBaseConnection.ConnectDB();
@@ -181,7 +181,7 @@ public class LoginWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_passwordKeyPressed
 
     private void Login(){
-        String sql = "select * from LoginInfo where Username=? and Password=?";
+        String sql = "select * from organisation where master_id=? and db_password=?";
         try{
             pst = conn.prepareStatement(sql);
             pst.setString( 1, txt_username.getText() );
@@ -191,7 +191,7 @@ public class LoginWindow extends javax.swing.JFrame {
             if( rs.next() ){
                 //JOptionPane.showMessageDialog( null, "Username and Password is correct" );
                 //StartNewWindow and set its visibility = true
-                if( rs.getString("Access").equals("librarian") )
+                /*if( rs.getString("Access").equals("librarian") )
                 {
                     close();
                     librarianHome frame = new librarianHome();
@@ -207,7 +207,11 @@ public class LoginWindow extends javax.swing.JFrame {
                     close();
                     studentHome frame = new studentHome();
                     frame.setVisible(true);
-                }
+                }*/
+                close();
+                librarianHome frame = new librarianHome();
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
             }
             else
                 JOptionPane.showMessageDialog( null, "Username and Password is not correct" );

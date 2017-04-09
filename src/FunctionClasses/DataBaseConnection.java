@@ -17,8 +17,8 @@ public class DataBaseConnection {
     public static Connection ConnectDB(){
         
         try{
-            Class.forName("org.sqlite.JDBC");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/kenbit");
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/kenbit","root","");
             return conn;
         }catch( Exception e ){
             JOptionPane.showMessageDialog( null,e );
