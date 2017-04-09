@@ -184,50 +184,51 @@ public class LoginWindow extends javax.swing.JFrame {
         String sql = "select * from user where u_id=? and password=?";
         try{
             pst = conn.prepareStatement(sql);
-            pst.setString( 1, txt_username.getText() );
+            String userid = txt_username.getText();
+            pst.setString( 1, userid );
             pst.setString( 2, txt_password.getText() );
             
             rs = pst.executeQuery();
             if( rs.next() ){
                 //JOptionPane.showMessageDialog( null, "Username and Password is correct" );
                 //StartNewWindow and set its visibility = true
-                if( rs.getString("type").equals("student") )
+                if( rs.getString("job").equals("student") )
                 {
                     close();
-                    studentHome frame = new studentHome();
+                    studentHome frame = new studentHome( userid );
                     frame.setLocationRelativeTo(null);
                     frame.setVisible(true);
                 }
-                else if( rs.getString("type").equals("teacher") ){
+                else if( rs.getString("job").equals("teacher") ){
                     close();
-                    teacherHome frame = new teacherHome();
-                    frame.setLocationRelativeTo(null);
-                    frame.setVisible(true);
+                    //teacherHome frame = new teacherHome();
+                    //frame.setLocationRelativeTo(null);
+                    //frame.setVisible(true);
                 }
-                else if( rs.getString("type").equals("parent") ){
+                else if( rs.getString("job").equals("parent") ){
                     close();
-                    parentHome frame = new parentHome();
-                    frame.setLocationRelativeTo(null);
-                    frame.setVisible(true);
-                }else if( rs.getString("type").equals("accounts") ){
+                    //parentHome frame = new parentHome();
+                    //frame.setLocationRelativeTo(null);
+                    //frame.setVisible(true);
+                }else if( rs.getString("job").equals("accounts") ){
                     close();
-                    accountsHome frame = new accountsHome();
-                    frame.setLocationRelativeTo(null);
-                    frame.setVisible(true);
-                }else if( rs.getString("type").equals("management") ){
+                    //accountsHome frame = new accountsHome();
+                    //frame.setLocationRelativeTo(null);
+                    //frame.setVisible(true);
+                }else if( rs.getString("job").equals("management") ){
                     close();
                     adminHome frame = new adminHome();
                     frame.setLocationRelativeTo(null);
                     frame.setVisible(true);
-                }else if( rs.getString("type").equals("librarian") ){
+                }else if( rs.getString("job").equals("librarian") ){
                     close();
                     librarianHome frame = new librarianHome();
                     frame.setLocationRelativeTo(null);
                     frame.setVisible(true);
                 }else {
                     close();
-                    logisticsHome frame = new logiscticsHome();
-                    frame.setVisible(true);
+                    //logisticsHome frame = new logiscticsHome();
+                    //frame.setVisible(true);
                 }
             }
             else

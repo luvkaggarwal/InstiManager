@@ -28,7 +28,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+          <Component id="jPanel1" min="-2" pref="798" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -39,10 +39,20 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jPanel2" max="32767" attributes="0"/>
-                      <Component id="jPanel3" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jPanel3" max="32767" attributes="0"/>
+                              <Component id="jPanel2" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="201" max="-2" attributes="0"/>
+                          <Component id="Button" min="-2" pref="139" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="CancelButton" min="-2" pref="139" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -53,7 +63,12 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="Button" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="CancelButton" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -69,39 +84,37 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="Year" max="32767" attributes="0"/>
-                          <Component id="Course" max="32767" attributes="0"/>
-                          <Component id="Pages" alignment="0" max="32767" attributes="0"/>
-                          <Component id="BillNo" alignment="0" max="32767" attributes="0"/>
-                          <Component id="Title" max="32767" attributes="0"/>
-                          <Component id="AccessionID" alignment="1" max="32767" attributes="0"/>
-                          <Component id="Cost" alignment="1" max="32767" attributes="0"/>
-                          <Component id="Location" alignment="1" max="32767" attributes="0"/>
-                          <Component id="Edition" alignment="1" max="32767" attributes="0"/>
-                          <Component id="Publisher" alignment="1" max="32767" attributes="0"/>
-                          <Component id="Author1" alignment="0" max="32767" attributes="0"/>
-                          <Component id="Author2" alignment="0" max="32767" attributes="0"/>
-                          <Component id="Status" alignment="0" max="32767" attributes="0"/>
-                          <Component id="Barcode" min="-2" pref="144" max="-2" attributes="0"/>
+                          <Component id="percentage" max="32767" attributes="0"/>
+                          <Component id="department" max="32767" attributes="0"/>
+                          <Component id="subjects" alignment="0" max="32767" attributes="0"/>
+                          <Component id="course" alignment="0" max="32767" attributes="0"/>
+                          <Component id="fname" max="32767" attributes="0"/>
+                          <Component id="userid" alignment="1" max="32767" attributes="0"/>
+                          <Component id="Address" alignment="1" max="32767" attributes="0"/>
+                          <Component id="Sex" alignment="1" max="32767" attributes="0"/>
+                          <Component id="dob" alignment="1" pref="144" max="32767" attributes="0"/>
+                          <Component id="Phone" alignment="1" max="32767" attributes="0"/>
+                          <Component id="mname" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lname" alignment="0" max="32767" attributes="0"/>
+                          <Component id="semester" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="BillNoText" max="32767" attributes="0"/>
-                          <Component id="BarcodeText" max="32767" attributes="0"/>
-                          <Component id="YearText" max="32767" attributes="0"/>
-                          <Component id="PagesText" max="32767" attributes="0"/>
-                          <Component id="EditionText" max="32767" attributes="0"/>
-                          <Component id="LocationText" max="32767" attributes="0"/>
-                          <Component id="CostText" max="32767" attributes="0"/>
-                          <Component id="Author2Text" max="32767" attributes="0"/>
-                          <Component id="AccessionIDText" max="32767" attributes="0"/>
-                          <Component id="TitleText" max="32767" attributes="0"/>
-                          <Component id="Author1Text" max="32767" attributes="0"/>
-                          <Component id="StatusCombo" alignment="0" pref="500" max="32767" attributes="0"/>
-                          <Component id="PublisherCombo" max="32767" attributes="0"/>
-                          <Component id="CourseCombo" max="32767" attributes="0"/>
+                          <Component id="tvCourse" max="32767" attributes="0"/>
+                          <Component id="etPercentage" max="32767" attributes="0"/>
+                          <Component id="etDepartment" max="32767" attributes="0"/>
+                          <Component id="tvDob" max="32767" attributes="0"/>
+                          <Component id="tvSex" max="32767" attributes="0"/>
+                          <Component id="tvAddress" max="32767" attributes="0"/>
+                          <Component id="tvlname" max="32767" attributes="0"/>
+                          <Component id="tvuserid" max="32767" attributes="0"/>
+                          <Component id="tvfname" max="32767" attributes="0"/>
+                          <Component id="tvmname" max="32767" attributes="0"/>
+                          <Component id="cbSemester" alignment="0" max="32767" attributes="0"/>
+                          <Component id="cbPhone" pref="500" max="32767" attributes="0"/>
+                          <Component id="cbSubjects" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -110,178 +123,160 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="AccessionID" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                          <Component id="AccessionIDText" alignment="3" max="32767" attributes="0"/>
+                          <Component id="userid" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                          <Component id="tvuserid" alignment="3" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="Title" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                          <Component id="TitleText" alignment="3" max="32767" attributes="0"/>
+                          <Component id="fname" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                          <Component id="tvfname" alignment="3" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="Author1" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                          <Component id="Author1Text" alignment="3" max="32767" attributes="0"/>
+                          <Component id="mname" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                          <Component id="tvmname" alignment="3" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="Author2" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                          <Component id="Author2Text" alignment="3" max="32767" attributes="0"/>
+                          <Component id="lname" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                          <Component id="tvlname" alignment="3" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="Cost" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                          <Component id="CostText" alignment="3" max="32767" attributes="0"/>
+                          <Component id="Address" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                          <Component id="tvAddress" alignment="3" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="Location" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                          <Component id="LocationText" alignment="3" max="32767" attributes="0"/>
+                          <Component id="Sex" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                          <Component id="tvSex" alignment="3" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="Edition" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                          <Component id="EditionText" alignment="3" max="32767" attributes="0"/>
+                          <Component id="dob" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                          <Component id="tvDob" alignment="3" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="Publisher" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                          <Component id="PublisherCombo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Phone" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                          <Component id="cbPhone" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="BillNo" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                          <Component id="BillNoText" alignment="3" max="32767" attributes="0"/>
+                          <Component id="course" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                          <Component id="tvCourse" alignment="3" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="Status" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                          <Component id="StatusCombo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="semester" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                          <Component id="cbSemester" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="Pages" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                          <Component id="PagesText" alignment="3" max="32767" attributes="0"/>
+                          <Component id="subjects" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                          <Component id="cbSubjects" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="Course" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                          <Component id="CourseCombo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="department" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                          <Component id="etDepartment" alignment="3" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="Year" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                          <Component id="YearText" alignment="3" max="32767" attributes="0"/>
+                          <Component id="percentage" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                          <Component id="etPercentage" alignment="3" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="Barcode" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                          <Component id="BarcodeText" alignment="3" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JTextField" name="YearText">
+            <Component class="javax.swing.JTextField" name="etPercentage">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Times New Roman" size="18" style="0"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="AccessionID">
+            <Component class="javax.swing.JLabel" name="userid">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Yu Mincho" size="18" style="1"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="ACCESSION ID"/>
+                <Property name="text" type="java.lang.String" value="USER ID"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="Cost">
+            <Component class="javax.swing.JLabel" name="Address">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Yu Mincho" size="18" style="1"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="COST"/>
+                <Property name="text" type="java.lang.String" value="ADDRESS"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="BillNoText">
+            <Component class="javax.swing.JTextField" name="tvCourse">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Times New Roman" size="18" style="0"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="Author2">
+            <Component class="javax.swing.JLabel" name="lname">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Yu Mincho" size="18" style="1"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="AUTHOR 2"/>
+                <Property name="text" type="java.lang.String" value="LAST NAME"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="CostText">
+            <Component class="javax.swing.JTextField" name="tvAddress">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Times New Roman" size="18" style="0"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="Pages">
+            <Component class="javax.swing.JLabel" name="subjects">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Yu Mincho" size="18" style="1"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="PAGES"/>
+                <Property name="text" type="java.lang.String" value="SUBJECTS"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="Author2Text">
+            <Component class="javax.swing.JTextField" name="tvlname">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Times New Roman" size="18" style="0"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Author2TextActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tvlnameActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="Publisher">
+            <Component class="javax.swing.JLabel" name="Phone">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Yu Mincho" size="18" style="1"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="PUBLISHER"/>
+                <Property name="text" type="java.lang.String" value="PHONE"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="BillNo">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Yu Mincho" size="18" style="1"/>
-                </Property>
-                <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="BILL NO"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="PagesText">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Times New Roman" size="18" style="0"/>
-                </Property>
-                <Property name="horizontalAlignment" type="int" value="0"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="Course">
+            <Component class="javax.swing.JLabel" name="course">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Yu Mincho" size="18" style="1"/>
@@ -290,124 +285,149 @@
                 <Property name="text" type="java.lang.String" value="COURSE"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="LocationText">
+            <Component class="javax.swing.JTextField" name="etDepartment">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Times New Roman" size="18" style="0"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="Title">
+            <Component class="javax.swing.JLabel" name="department">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Yu Mincho" size="18" style="1"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="TITLE"/>
+                <Property name="text" type="java.lang.String" value="DEPARTMENT"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="Location">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Yu Mincho" size="18" style="1"/>
-                </Property>
-                <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="LOCATION"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="Year">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Yu Mincho" size="18" style="1"/>
-                </Property>
-                <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="YEAR"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="TitleText">
+            <Component class="javax.swing.JTextField" name="tvSex">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Times New Roman" size="18" style="0"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="Status">
+            <Component class="javax.swing.JLabel" name="fname">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Yu Mincho" size="18" style="1"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="STATUS"/>
+                <Property name="text" type="java.lang.String" value="FIRST NAME"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="EditionText">
+            <Component class="javax.swing.JLabel" name="Sex">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Yu Mincho" size="18" style="1"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="SEX"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="percentage">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Yu Mincho" size="18" style="1"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="PERCENTAGE"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="tvfname">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Times New Roman" size="18" style="0"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="semester">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Yu Mincho" size="18" style="1"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="SEMESTER"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="tvDob">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Times New Roman" size="18" style="0"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EditionTextActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tvDobActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="BarcodeText">
+            <Component class="javax.swing.JTextField" name="tvuserid">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Times New Roman" size="18" style="0"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="AccessionIDText">
+            <Component class="javax.swing.JLabel" name="mname">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Yu Mincho" size="18" style="1"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="MIDDLE NAME"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="dob">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Yu Mincho" size="18" style="1"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="DATE OF BIRTH"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="tvmname">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Times New Roman" size="18" style="0"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="Author1">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Yu Mincho" size="18" style="1"/>
-                </Property>
-                <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="AUTHOR 1"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="Barcode">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Yu Mincho" size="18" style="1"/>
-                </Property>
-                <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="BARCODE"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="Edition">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Yu Mincho" size="18" style="1"/>
-                </Property>
-                <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="EDITION"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="Author1Text">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Times New Roman" size="18" style="0"/>
-                </Property>
-                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Author1TextActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tvmnameActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JComboBox" name="StatusCombo">
+            <Component class="javax.swing.JComboBox" name="cbSemester">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="8">
+                    <StringItem index="0" value="1"/>
+                    <StringItem index="1" value="2"/>
+                    <StringItem index="2" value="3"/>
+                    <StringItem index="3" value="4"/>
+                    <StringItem index="4" value="5"/>
+                    <StringItem index="5" value="6"/>
+                    <StringItem index="6" value="7"/>
+                    <StringItem index="7" value="8"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbSemesterActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="cbPhone">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="4">
@@ -419,19 +439,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="PublisherCombo">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="Item 1"/>
-                    <StringItem index="1" value="Item 2"/>
-                    <StringItem index="2" value="Item 3"/>
-                    <StringItem index="3" value="Item 4"/>
-                  </StringArray>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="CourseCombo">
+            <Component class="javax.swing.JComboBox" name="cbSubjects">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="4">
@@ -450,52 +458,38 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="201" max="32767" attributes="0"/>
-                      <Component id="Button" min="-2" pref="139" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="CancelButton" min="-2" pref="139" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="198" max="-2" attributes="0"/>
-                  </Group>
+                  <EmptySpace min="0" pref="689" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="Button" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                          <Component id="CancelButton" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
+                  <EmptySpace min="0" pref="62" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
-          <SubComponents>
-            <Component class="javax.swing.JButton" name="Button">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Verdana" size="24" style="1"/>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButtonActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="CancelButton">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Verdana" size="24" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="CANCEL"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CancelButtonActionPerformed"/>
-              </Events>
-            </Component>
-          </SubComponents>
         </Container>
+        <Component class="javax.swing.JButton" name="Button">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Verdana" size="24" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="EDIT"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="CancelButton">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Verdana" size="24" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="CANCEL"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CancelButtonActionPerformed"/>
+          </Events>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

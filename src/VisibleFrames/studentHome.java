@@ -16,8 +16,10 @@ public class studentHome extends javax.swing.JFrame {
     /**
      * Creates new form studentHome
      */
-    public studentHome() {
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+    private static String userid;
+    
+    public studentHome(String userid) {
+        this.userid = userid;
         initComponents();
     }
 
@@ -193,94 +195,36 @@ public class studentHome extends javax.swing.JFrame {
 
     private void detailsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_detailsButtonActionPerformed
         // TODO add your handling code here:
-        FindJournalMagazine frame = new FindJournalMagazine();
+        Details frame = new Details( userid );
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-        column = null;
-        value = null;
-        MentorButton.setEnabled(false);
-        TaskButton.setEnabled(false);
-        LibraryButton.setEnabled(false);
-        ReportButton.setEnabled(false);
-        detailsButton.setEnabled(false);
-        mEmpty();
     }//GEN-LAST:event_detailsButtonActionPerformed
 
     private void MentorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MentorButtonActionPerformed
         // TODO add your handling code here:
-        JournalMagazine frame = new JournalMagazine( AccessionID , "ADD" , "Magazines" );
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-        MentorButton.setEnabled(false);
-        TaskButton.setEnabled(false);
-        LibraryButton.setEnabled(false);
-        ReportButton.setEnabled(false);
-        detailsButton.setEnabled(false);
-        mEmpty();
+      
     }//GEN-LAST:event_MentorButtonActionPerformed
 
     private void LibraryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LibraryButtonActionPerformed
         // TODO add your handling code here:
-        int Choice = JOptionPane.showConfirmDialog( null, "Do you want to delete the entry ?", "Delete", JOptionPane.YES_NO_OPTION );
-
-        if( Choice == 0  ){
-            try{
-                String sql = "delete from Magazines where ID=?;";
-                pst = conn.prepareStatement(sql);
-                pst.setString( 1, MagazineIDText.getText() );
-                pst.execute();
-            }catch( Exception e ){
-                JOptionPane.showMessageDialog( null, e );
-            }finally{
-                try{
-                    rs.close();
-                    pst.close();
-                }catch( Exception e ){
-                    JOptionPane.showMessageDialog( null, e );
-                }
-            }
-            mEmpty();
-            updateTable( "Magazines" , false );
-        }
+        FindBooks frame = new FindBooks();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
     }//GEN-LAST:event_LibraryButtonActionPerformed
 
     private void NoticeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NoticeButtonActionPerformed
         // TODO add your handling code here:
-        mEmpty();
-        if( column == null )
-        updateTable( "Magazines" , false );
-        else
-        updateTable( "Magazines" , true );
-        column = null;
-        value = null;
-        detailsButton.setEnabled(true);
-        ReportButton.setEnabled(true);
-        MentorButton.setEnabled(true);
+        
     }//GEN-LAST:event_NoticeButtonActionPerformed
 
     private void TaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TaskButtonActionPerformed
         // TODO add your handling code here:
-        JournalMagazine frame = new JournalMagazine( AccessionID , "EDIT" , "Magazines" );
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-        MentorButton.setEnabled(false);
-        TaskButton.setEnabled(false);
-        LibraryButton.setEnabled(false);
-        ReportButton.setEnabled(false);
-        detailsButton.setEnabled(false);
-        mEmpty();
+        
     }//GEN-LAST:event_TaskButtonActionPerformed
 
     private void ReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportButtonActionPerformed
         // TODO add your handling code here:
-        MessageFormat header = new MessageFormat("C:\\Users\\LUV\\Documents\\NetBeansProjects\\Project\\Images\\PrintHeader.png");
-        MessageFormat footer = new MessageFormat("C:\\Users\\LUV\\Documents\\NetBeansProjects\\Project\\Images\\PrintFooter.png");
-
-        try{
-            MagazinesTable.print( JTable.PrintMode.FIT_WIDTH , header , footer );
-        }catch( java.awt.print.PrinterException e ){
-            System.err.format( "Cannot Print %s%n" , e.getMessage() );
-        }
+        
     }//GEN-LAST:event_ReportButtonActionPerformed
 
     /**
@@ -313,7 +257,7 @@ public class studentHome extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new studentHome().setVisible(true);
+                new studentHome(userid).setVisible(true);
             }
         });
     }
