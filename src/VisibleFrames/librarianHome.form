@@ -317,9 +317,15 @@
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="StudentNameLabel" min="-2" pref="92" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                      <Component id="StudentNameText" min="-2" pref="390" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                                  </Group>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="1" attributes="0">
-                                          <Group type="102" alignment="1" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="Book1AccessionID" min="-2" pref="100" max="-2" attributes="0"/>
                                                   <Component id="Book2AccessionID" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
@@ -346,36 +352,6 @@
                                                   <Component id="Book2Fine" alignment="1" max="32767" attributes="0"/>
                                                   <Component id="Book1Fine" alignment="1" min="-2" pref="100" max="-2" attributes="0"/>
                                               </Group>
-                                              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                  <Component id="ClassLabel" alignment="0" pref="92" max="32767" attributes="0"/>
-                                                  <Component id="StudentNameLabel" alignment="0" max="32767" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="102" attributes="0">
-                                                      <Component id="ClassText" min="-2" pref="115" max="-2" attributes="0"/>
-                                                      <EmptySpace max="32767" attributes="0"/>
-                                                      <Component id="RollNoLabel" min="-2" pref="103" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="191" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Component id="StudentNameText" max="32767" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                              <Component id="RollNoText" min="-2" pref="177" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="AccessionIDLabel" min="-2" pref="100" max="-2" attributes="0"/>
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="IssuedLabel" min="-2" pref="92" max="-2" attributes="0"/>
@@ -386,8 +362,19 @@
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                               <Component id="TotalFineText" max="32767" attributes="0"/>
                                           </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="1" attributes="0">
+                                                  <Component id="AccessionIDLabel" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="vUserId" min="-2" pref="92" max="-2" attributes="0"/>
+                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                      <Component id="tvUserId" min="-2" pref="388" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          </Group>
                                       </Group>
-                                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                                      <EmptySpace min="36" pref="36" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -402,10 +389,8 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="ClassLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="ClassText" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="RollNoLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="RollNoText" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="vUserId" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="tvUserId" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -492,31 +477,6 @@
                         <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="ClassLabel">
-                      <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Tahoma" size="18" style="1"/>
-                        </Property>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                        </Property>
-                        <Property name="horizontalAlignment" type="int" value="0"/>
-                        <Property name="text" type="java.lang.String" value="CLASS"/>
-                        <Property name="enabled" type="boolean" value="false"/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JTextField" name="ClassText">
-                      <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Times New Roman" size="18" style="1"/>
-                        </Property>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="99" green="0" red="0" type="rgb"/>
-                        </Property>
-                        <Property name="horizontalAlignment" type="int" value="0"/>
-                        <Property name="enabled" type="boolean" value="false"/>
-                      </Properties>
-                    </Component>
                     <Component class="javax.swing.JLabel" name="IssueDateLabel">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -555,7 +515,7 @@
                         <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="RollNoLabel">
+                    <Component class="javax.swing.JLabel" name="vUserId">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Tahoma" size="18" style="1"/>
@@ -564,11 +524,11 @@
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="horizontalAlignment" type="int" value="0"/>
-                        <Property name="text" type="java.lang.String" value="ROLL NO"/>
+                        <Property name="text" type="java.lang.String" value="USER ID"/>
                         <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="RollNoText">
+                    <Component class="javax.swing.JTextField" name="tvUserId">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Times New Roman" size="18" style="1"/>
@@ -823,8 +783,8 @@
                                           <Group type="102" attributes="0">
                                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                                   <Component id="BookTitleLabel" max="32767" attributes="0"/>
+                                                  <Component id="BookAccessionIDLabel" pref="88" max="32767" attributes="0"/>
                                                   <Component id="BookAuthor1Label" alignment="1" max="32767" attributes="0"/>
-                                                  <Component id="BookAccessionIDLabel" max="32767" attributes="0"/>
                                               </Group>
                                               <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -835,18 +795,15 @@
                                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                                       <Component id="BookStatusText" min="-2" pref="132" max="-2" attributes="0"/>
                                                   </Group>
-                                                  <Component id="BookTitleText" max="32767" attributes="0"/>
                                                   <Component id="BookAuthor2Text" max="32767" attributes="0"/>
+                                                  <Component id="BookTitleText" alignment="1" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <Group type="102" attributes="0">
-                                              <Component id="BookEditionLabel" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="BookEditionText" min="-2" pref="109" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                              <Component id="BookEditionLabel" min="-2" pref="99" max="-2" attributes="0"/>
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Component id="BookCostLabel" min="-2" pref="69" max="-2" attributes="0"/>
-                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Component id="BookCostText" min="-2" pref="132" max="-2" attributes="0"/>
+                                              <Component id="BookEditionText" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -862,7 +819,7 @@
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -890,8 +847,6 @@
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="BookEditionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="BookEditionText" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="BookCostLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="BookCostText" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -943,7 +898,7 @@
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="horizontalAlignment" type="int" value="0"/>
-                        <Property name="text" type="java.lang.String" value="AUTHOR1"/>
+                        <Property name="text" type="java.lang.String" value="AUTHOR"/>
                         <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                     </Component>
@@ -969,7 +924,7 @@
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="horizontalAlignment" type="int" value="0"/>
-                        <Property name="text" type="java.lang.String" value="EDITION"/>
+                        <Property name="text" type="java.lang.String" value="GENRE"/>
                         <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                     </Component>
@@ -1043,20 +998,7 @@
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="horizontalAlignment" type="int" value="0"/>
-                        <Property name="text" type="java.lang.String" value="STATUS"/>
-                        <Property name="enabled" type="boolean" value="false"/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JLabel" name="BookCostLabel">
-                      <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Tahoma" size="18" style="1"/>
-                        </Property>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                        </Property>
-                        <Property name="horizontalAlignment" type="int" value="0"/>
-                        <Property name="text" type="java.lang.String" value="COST"/>
+                        <Property name="text" type="java.lang.String" value="ISSUED"/>
                         <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                     </Component>
@@ -1074,18 +1016,6 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="BookSubjectText">
-                      <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Times New Roman" size="18" style="1"/>
-                        </Property>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="99" green="0" red="0" type="rgb"/>
-                        </Property>
-                        <Property name="horizontalAlignment" type="int" value="0"/>
-                        <Property name="enabled" type="boolean" value="false"/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JTextField" name="BookCostText">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Times New Roman" size="18" style="1"/>
@@ -1276,8 +1206,8 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                      <JTabbedPaneConstraints tabName="MAGAZINES">
-                        <Property name="tabTitle" type="java.lang.String" value="MAGAZINES"/>
+                      <JTabbedPaneConstraints tabName="BOOKS">
+                        <Property name="tabTitle" type="java.lang.String" value="BOOKS"/>
                       </JTabbedPaneConstraints>
                     </Constraint>
                   </Constraints>
@@ -1291,55 +1221,46 @@
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
-                                              <Component id="MVENDOR" min="-2" pref="171" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="MVendorText" min="-2" pref="195" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                                  <Component id="vName" pref="165" max="32767" attributes="0"/>
+                                                  <Component id="vDate" max="32767" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace min="24" pref="24" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="tvName" max="32767" attributes="0"/>
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="tvDate" min="-2" pref="195" max="-2" attributes="0"/>
+                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                      <Component id="vAccId" min="-2" pref="202" max="-2" attributes="0"/>
+                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                      <Component id="tvAccId" min="-2" pref="240" max="-2" attributes="0"/>
+                                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                                  </Group>
+                                              </Group>
                                           </Group>
-                                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="MVOLUME" min="-2" pref="165" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                                                  <Component id="MVolumeText" max="32767" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="MPUBLISHER" min="-2" pref="171" max="-2" attributes="0"/>
-                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Component id="MPublisherText" min="-2" pref="195" max="-2" attributes="0"/>
-                                              </Group>
+                                          <Group type="102" attributes="0">
+                                              <Component id="vSubject" min="-2" pref="165" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                                              <Component id="tvSubject" min="-2" pref="195" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="vIssued" min="-2" pref="202" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="tvIssud" max="32767" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                  <Component id="MTITLE" max="32767" attributes="0"/>
-                                                  <Component id="MEDITION" pref="165" max="32767" attributes="0"/>
-                                              </Group>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <EmptySpace min="-2" pref="237" max="-2" attributes="0"/>
-                                                      <Component id="MAGAZINE_ID" min="-2" pref="202" max="-2" attributes="0"/>
-                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                      <Component id="MagazineIDText" min="-2" pref="240" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" attributes="0">
-                                                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                                                      <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Component id="MTitleText" alignment="1" max="32767" attributes="0"/>
-                                                          <Group type="102" alignment="0" attributes="0">
-                                                              <Component id="MEditionText" min="-2" pref="195" max="-2" attributes="0"/>
-                                                              <EmptySpace max="32767" attributes="0"/>
-                                                              <Component id="jPanel9" min="-2" pref="460" max="-2" attributes="0"/>
-                                                          </Group>
-                                                      </Group>
-                                                  </Group>
-                                              </Group>
+                                              <Component id="MPUBLISHER" min="-2" pref="171" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="tvPublisher" max="32767" attributes="0"/>
                                           </Group>
+                                          <Component id="jPanel9" alignment="1" max="32767" attributes="0"/>
                                       </Group>
-                                      <EmptySpace max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jPanel10" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="476" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
                                       <Component id="jScrollPane2" min="-2" pref="1170" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
+                                      <EmptySpace pref="478" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -1358,39 +1279,31 @@
                                       <Component id="jScrollPane2" min="-2" pref="275" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="MTITLE" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="MTitleText" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="vName" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="tvName" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="MEDITION" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="MAGAZINE_ID" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="MagazineIDText" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="MEditionText" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="vDate" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="vAccId" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="tvAccId" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="tvDate" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                                              <Component id="jPanel9" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="3" attributes="0">
-                                                  <Component id="MVOLUME" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="MVolumeText" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="3" attributes="0">
-                                                  <Component id="MVENDOR" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="MVendorText" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="3" attributes="0">
-                                                  <Component id="MPUBLISHER" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="MPublisherText" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="vSubject" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="tvSubject" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="vIssued" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="tvIssud" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                       </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jPanel9" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="MPUBLISHER" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="tvPublisher" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
@@ -1406,7 +1319,7 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTable" name="MagazinesTable">
+                        <Component class="javax.swing.JTable" name="BooksTable">
                           <Properties>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                               <Table columnCount="4" rowCount="4">
@@ -1418,7 +1331,7 @@
                             </Property>
                           </Properties>
                           <Events>
-                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MagazinesTableMouseClicked"/>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="BooksTableMouseClicked"/>
                           </Events>
                         </Component>
                       </SubComponents>
@@ -1435,18 +1348,10 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="MPERIODICITY" alignment="0" min="-2" pref="195" max="-2" attributes="0"/>
-                                      <Component id="MNUMBER" alignment="0" min="-2" pref="195" max="-2" attributes="0"/>
-                                      <Component id="MDATE" alignment="0" min="-2" pref="189" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="vAuthor" min="-2" pref="167" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="MNumberText" pref="243" max="32767" attributes="0"/>
-                                      <Component id="MPeriodicityText" max="32767" attributes="0"/>
-                                      <Component id="MDateText" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="tvAuthor" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1455,18 +1360,8 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="MPERIODICITY" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="MPeriodicityText" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="MNUMBER" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="MNumberText" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="MDATE" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="MDateText" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="vAuthor" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="tvAuthor" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
@@ -1474,7 +1369,7 @@
                         </DimensionLayout>
                       </Layout>
                       <SubComponents>
-                        <Component class="javax.swing.JLabel" name="MDATE">
+                        <Component class="javax.swing.JLabel" name="vAuthor">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Verdana" size="24" style="1"/>
@@ -1483,43 +1378,10 @@
                               <Color blue="ff" green="ff" red="ff" type="rgb"/>
                             </Property>
                             <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="text" type="java.lang.String" value="DATE"/>
+                            <Property name="text" type="java.lang.String" value="AUTHOR"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="MNUMBER">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Verdana" size="24" style="1"/>
-                            </Property>
-                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                            </Property>
-                            <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="text" type="java.lang.String" value="NUMBER"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JLabel" name="MPERIODICITY">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Verdana" size="24" style="1"/>
-                            </Property>
-                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                            </Property>
-                            <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="text" type="java.lang.String" value="PERIODICITY"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JTextField" name="MDateText">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Verdana" size="24" style="1"/>
-                            </Property>
-                            <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="enabled" type="boolean" value="false"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JTextField" name="MNumberText">
+                        <Component class="javax.swing.JTextField" name="tvAuthor">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Verdana" size="24" style="1"/>
@@ -1528,24 +1390,12 @@
                             <Property name="enabled" type="boolean" value="false"/>
                           </Properties>
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MNumberTextActionPerformed"/>
-                          </Events>
-                        </Component>
-                        <Component class="javax.swing.JTextField" name="MPeriodicityText">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Verdana" size="24" style="1"/>
-                            </Property>
-                            <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="enabled" type="boolean" value="false"/>
-                          </Properties>
-                          <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MPeriodicityTextActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tvAuthorActionPerformed"/>
                           </Events>
                         </Component>
                       </SubComponents>
                     </Container>
-                    <Component class="javax.swing.JTextField" name="MTitleText">
+                    <Component class="javax.swing.JTextField" name="tvName">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Verdana" size="24" style="1"/>
@@ -1554,7 +1404,7 @@
                         <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="MTITLE">
+                    <Component class="javax.swing.JLabel" name="vName">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Verdana" size="24" style="1"/>
@@ -1566,7 +1416,7 @@
                         <Property name="text" type="java.lang.String" value="TITLE"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="MEDITION">
+                    <Component class="javax.swing.JLabel" name="vDate">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Verdana" size="24" style="1"/>
@@ -1575,10 +1425,10 @@
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="horizontalAlignment" type="int" value="0"/>
-                        <Property name="text" type="java.lang.String" value="EDITION"/>
+                        <Property name="text" type="java.lang.String" value="DATE"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="MEditionText">
+                    <Component class="javax.swing.JTextField" name="tvDate">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Verdana" size="24" style="1"/>
@@ -1587,7 +1437,7 @@
                         <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="MAGAZINE_ID">
+                    <Component class="javax.swing.JLabel" name="vAccId">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Verdana" size="24" style="1"/>
@@ -1596,10 +1446,10 @@
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="horizontalAlignment" type="int" value="0"/>
-                        <Property name="text" type="java.lang.String" value="MAGAZINE ID"/>
+                        <Property name="text" type="java.lang.String" value="ACCESSION ID"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="MagazineIDText">
+                    <Component class="javax.swing.JTextField" name="tvAccId">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Verdana" size="24" style="1"/>
@@ -1608,7 +1458,7 @@
                         <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="MVOLUME">
+                    <Component class="javax.swing.JLabel" name="vSubject">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Verdana" size="24" style="1"/>
@@ -1617,10 +1467,10 @@
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="horizontalAlignment" type="int" value="0"/>
-                        <Property name="text" type="java.lang.String" value="VOLUME"/>
+                        <Property name="text" type="java.lang.String" value="SUBJECT"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="MVENDOR">
+                    <Component class="javax.swing.JLabel" name="vIssued">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Verdana" size="24" style="1"/>
@@ -1629,7 +1479,7 @@
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="horizontalAlignment" type="int" value="0"/>
-                        <Property name="text" type="java.lang.String" value="VENDOR"/>
+                        <Property name="text" type="java.lang.String" value="ISSUED"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="MPUBLISHER">
@@ -1644,7 +1494,7 @@
                         <Property name="text" type="java.lang.String" value="PUBLISHER"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="MVolumeText">
+                    <Component class="javax.swing.JTextField" name="tvSubject">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Verdana" size="24" style="1"/>
@@ -1653,7 +1503,7 @@
                         <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="MPublisherText">
+                    <Component class="javax.swing.JTextField" name="tvPublisher">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Verdana" size="24" style="1"/>
@@ -1662,7 +1512,7 @@
                         <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="MVendorText">
+                    <Component class="javax.swing.JTextField" name="tvIssud">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Verdana" size="24" style="1"/>
@@ -1917,51 +1767,45 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jScrollPane3" min="-2" pref="1150" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="vJID" pref="183" max="32767" attributes="0"/>
+                                          <Component id="JTITLE" max="32767" attributes="0"/>
+                                          <Component id="vJSubject" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jPanel11" max="32767" attributes="0"/>
+                                          <Component id="JTitleText" min="-2" pref="633" max="-2" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="JOURNAL_ID" pref="183" max="32767" attributes="0"/>
-                                                  <Component id="JTITLE" max="32767" attributes="0"/>
+                                              <Group type="103" groupAlignment="1" attributes="0">
+                                                  <Component id="tvJaccId" min="-2" pref="302" max="-2" attributes="0"/>
+                                                  <Component id="tvJSubject" min="-2" pref="302" max="-2" attributes="0"/>
                                               </Group>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="JTitleText" min="-2" pref="633" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="vIssue" max="32767" attributes="0"/>
+                                                  <Component id="vJDate" min="-2" pref="118" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="tvJDate" max="32767" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                                  </Group>
                                                   <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="JournalIDText" min="-2" pref="302" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                          <Component id="JEDITION" max="32767" attributes="0"/>
-                                                          <Component id="JVOLUME" min="-2" pref="118" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                                      <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Group type="102" attributes="0">
-                                                              <Component id="JVolumeText" max="32767" attributes="0"/>
-                                                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                                          </Group>
-                                                          <Group type="102" alignment="0" attributes="0">
-                                                              <Component id="JEditionText" min="-2" pref="177" max="-2" attributes="0"/>
-                                                              <EmptySpace pref="20" max="32767" attributes="0"/>
-                                                          </Group>
-                                                      </Group>
-                                                      <Component id="jPanel12" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="tvIssue" min="-2" pref="177" max="-2" attributes="0"/>
+                                                      <EmptySpace pref="20" max="32767" attributes="0"/>
                                                   </Group>
                                               </Group>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="JPERIODICITY" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="JPeriodicityText" min="-2" pref="302" max="-2" attributes="0"/>
+                                              <Component id="jPanel12" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
-                                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="jScrollPane3" min="-2" pref="1150" max="-2" attributes="0"/>
+                                  <Component id="jPanel11" min="-2" pref="836" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="45" max="32767" attributes="0"/>
+                              <EmptySpace pref="496" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1981,31 +1825,33 @@
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" attributes="0">
                                               <Group type="103" groupAlignment="3" attributes="0">
-                                                  <Component id="JOURNAL_ID" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="JournalIDText" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="vJID" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="tvJaccId" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="1" attributes="0">
                                               <Group type="103" groupAlignment="3" attributes="0">
-                                                  <Component id="JEDITION" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="JEditionText" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="vIssue" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="tvIssue" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="JPERIODICITY" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="JPeriodicityText" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="JVOLUME" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="JVolumeText" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="vJSubject" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="vJDate" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="tvJDate" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="tvJSubject" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jPanel11" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jPanel12" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="18" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -2046,32 +1892,20 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="vJAuthor" max="32767" attributes="0"/>
                                       <Group type="102" attributes="0">
-                                          <Component id="JVENDOR" max="32767" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="vJPublisher" min="-2" pref="184" max="-2" attributes="0"/>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
-                                      <Group type="102" attributes="0">
-                                          <Component id="JPUBLISHER" max="32767" attributes="0"/>
-                                          <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="JPublisherText" pref="307" max="32767" attributes="0"/>
-                                      <Component id="JVendorText" max="32767" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="JNUMBER" max="32767" attributes="0"/>
-                                      <Component id="JDATE" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="JDateText" pref="175" max="32767" attributes="0"/>
-                                      <Component id="JNumberText" max="32767" attributes="0"/>
+                                      <Component id="tvJVendor" pref="634" max="32767" attributes="0"/>
+                                      <Component id="tvJPublisher" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="322" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="223" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -2080,32 +1914,20 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="JVENDOR" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="JVendorText" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="vJAuthor" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="tvJVendor" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="JPUBLISHER" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="JPublisherText" alignment="3" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="JNUMBER" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="JNumberText" alignment="3" max="32767" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="JDATE" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="JDateText" alignment="3" max="32767" attributes="0"/>
+                                      <Component id="vJPublisher" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="tvJPublisher" alignment="3" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
                         </DimensionLayout>
                       </Layout>
                       <SubComponents>
-                        <Component class="javax.swing.JLabel" name="JPUBLISHER">
+                        <Component class="javax.swing.JLabel" name="vJPublisher">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Verdana" size="24" style="1"/>
@@ -2117,7 +1939,7 @@
                             <Property name="text" type="java.lang.String" value="PUBLISHER"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="JVENDOR">
+                        <Component class="javax.swing.JLabel" name="vJAuthor">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Verdana" size="24" style="1"/>
@@ -2129,31 +1951,7 @@
                             <Property name="text" type="java.lang.String" value="VENDOR"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JLabel" name="JDATE">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Verdana" size="24" style="1"/>
-                            </Property>
-                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                            </Property>
-                            <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="text" type="java.lang.String" value="DATE"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JLabel" name="JNUMBER">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Verdana" size="24" style="1"/>
-                            </Property>
-                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                            </Property>
-                            <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="text" type="java.lang.String" value="NUMBER"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JTextField" name="JVendorText">
+                        <Component class="javax.swing.JTextField" name="tvJVendor">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Verdana" size="24" style="1"/>
@@ -2162,28 +1960,7 @@
                             <Property name="enabled" type="boolean" value="false"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="JDateText">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Verdana" size="24" style="1"/>
-                            </Property>
-                            <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="enabled" type="boolean" value="false"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JTextField" name="JNumberText">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Verdana" size="24" style="1"/>
-                            </Property>
-                            <Property name="horizontalAlignment" type="int" value="0"/>
-                            <Property name="enabled" type="boolean" value="false"/>
-                          </Properties>
-                          <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JNumberTextActionPerformed"/>
-                          </Events>
-                        </Component>
-                        <Component class="javax.swing.JTextField" name="JPublisherText">
+                        <Component class="javax.swing.JTextField" name="tvJPublisher">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Verdana" size="24" style="1"/>
@@ -2215,7 +1992,7 @@
                         <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="JEDITION">
+                    <Component class="javax.swing.JLabel" name="vIssue">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Verdana" size="24" style="1"/>
@@ -2224,10 +2001,10 @@
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="horizontalAlignment" type="int" value="0"/>
-                        <Property name="text" type="java.lang.String" value="EDITION"/>
+                        <Property name="text" type="java.lang.String" value="ISSUE"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="JEditionText">
+                    <Component class="javax.swing.JTextField" name="tvIssue">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Verdana" size="24" style="1"/>
@@ -2236,7 +2013,7 @@
                         <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="JVOLUME">
+                    <Component class="javax.swing.JLabel" name="vJDate">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Verdana" size="24" style="1"/>
@@ -2245,10 +2022,10 @@
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="horizontalAlignment" type="int" value="0"/>
-                        <Property name="text" type="java.lang.String" value="VOLUME"/>
+                        <Property name="text" type="java.lang.String" value="DATE"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="JVolumeText">
+                    <Component class="javax.swing.JTextField" name="tvJDate">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Verdana" size="24" style="1"/>
@@ -2257,7 +2034,7 @@
                         <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="JOURNAL_ID">
+                    <Component class="javax.swing.JLabel" name="vJID">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Verdana" size="24" style="1"/>
@@ -2269,7 +2046,7 @@
                         <Property name="text" type="java.lang.String" value="JOURNAL ID"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="JournalIDText">
+                    <Component class="javax.swing.JTextField" name="tvJaccId">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Verdana" size="24" style="1"/>
@@ -2278,7 +2055,7 @@
                         <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="JPeriodicityText">
+                    <Component class="javax.swing.JTextField" name="tvJSubject">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Verdana" size="24" style="1"/>
@@ -2287,7 +2064,7 @@
                         <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="JPERIODICITY">
+                    <Component class="javax.swing.JLabel" name="vJSubject">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Verdana" size="24" style="1"/>
@@ -2296,7 +2073,7 @@
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="horizontalAlignment" type="int" value="0"/>
-                        <Property name="text" type="java.lang.String" value="PERIODICITY"/>
+                        <Property name="text" type="java.lang.String" value="Subject"/>
                       </Properties>
                     </Component>
                     <Container class="javax.swing.JPanel" name="jPanel12">

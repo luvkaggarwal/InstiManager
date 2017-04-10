@@ -36,68 +36,32 @@ public class librarianHome extends javax.swing.JFrame {
     public librarianHome() {
         initComponents();
         conn = FunctionClasses.DataBaseConnection.ConnectDB();
-        updateTable(false);
+        updateTable("book",false);
     }
 
-    private void updateTable( boolean number ){
-        
-        try{
-            String sql = "select AccessionID,"
-                    + "Title,"
-                    + "AuthorCode1,"
-                    + "AuthorCode2,"
-                    + "Edition,"
-                    + "Status from Books";
-            if( number )
-                sql += " where "+ column + "='" + value + "'";
-            sql += ";";
-            pst = conn.prepareStatement( sql );
-            rs = pst.executeQuery();
-            /*if( !( rs.next() ) && column.equals("AuthorCode1")){
-                column = "AuthorCode2";
-                updateTable( 1 );
-            }
-            else if( !( rs.next() ) ){
-                JOptionPane.showMessageDialog( null, "No record found!!" );
-                updateTable( 0 );
-            }
-            else*/
-                //ViewTable.setModel( DbUtils.resultSetToTableModel(rs) );
-        }catch( Exception e ){
-            JOptionPane.showMessageDialog( null, e );
-        }finally{
-            try{
-                rs.close();
-                pst.close();    
-            }catch( Exception e ){
-                JOptionPane.showMessageDialog( null, e );
-            }
-        }
-    }
-    
     private void updateTable( String Table , boolean number ){
         
         try{
-            String sql = "select ID,"
-                    + "Title,"
-                    + "Periodicity,"
-                    + "Edition,"
-                    + "Volume from " + Table;
+            String sql = "select book.acc_id as Accession ID,"
+                    + "bibname as Title,"
+                    + "author,"
+                    + "publication from bibliography, " + Table +" where bibliography.acc_id = " + Table + ".acc_id";
             if( number )
-                sql += " where "+ column + "='" + value + "'";
+                sql += " and "+ column + "='" + value + "'";
             sql += ";";
 
             pst = conn.prepareStatement( sql );
             rs = pst.executeQuery();
             
-            /*if( !( rs.next() ) ){
+            if( !( rs.next() ) ){
                 JOptionPane.showMessageDialog( null, "No record found!!" );
                 updateTable( Table , false );
             }
-            else*/ if( Table.equals("Journals") )
+            else if( Table.equals("journal") )
                 JournalsTable.setModel( DbUtils.resultSetToTableModel(rs) );
             else
-                MagazinesTable.setModel( DbUtils.resultSetToTableModel(rs) );
+                BooksTable.setModel( DbUtils.resultSetToTableModel(rs) );
+            
         }catch( Exception e ){
             JOptionPane.showMessageDialog( null, e );
         }finally{
@@ -111,27 +75,23 @@ public class librarianHome extends javax.swing.JFrame {
     }
     
     private void mEmpty(){
-        MagazineIDText.setText(null);
-        MTitleText.setText(null);
-        MEditionText.setText(null);
-        MPublisherText.setText(null);
-        MVendorText.setText(null);
-        MVolumeText.setText(null);
-        MPeriodicityText.setText(null);
-        MNumberText.setText(null);
-        MDateText.setText(null);
+        tvAccId.setText(null);
+        tvName.setText(null);
+        tvDate.setText(null);
+        tvPublisher.setText(null);
+        tvIssud.setText(null);
+        tvSubject.setText(null);
+        tvAuthor.setText(null);
     }
     
     private void jEmpty(){
-        JournalIDText.setText(null);
+        tvJaccId.setText(null);
         JTitleText.setText(null);
-        JEditionText.setText(null);
-        JPublisherText.setText(null);
-        JVendorText.setText(null);
-        JVolumeText.setText(null);
-        JPeriodicityText.setText(null);
-        JNumberText.setText(null);
-        JDateText.setText(null);
+        tvIssue.setText(null);
+        tvJPublisher.setText(null);
+        tvJVendor.setText(null);
+        tvJDate.setText(null);
+        tvJSubject.setText(null);
     }
     
     /**
@@ -155,13 +115,11 @@ public class librarianHome extends javax.swing.JFrame {
         jPanel15 = new javax.swing.JPanel();
         StudentNameLabel = new javax.swing.JLabel();
         StudentNameText = new javax.swing.JTextField();
-        ClassLabel = new javax.swing.JLabel();
-        ClassText = new javax.swing.JTextField();
         IssueDateLabel = new javax.swing.JLabel();
         TotalFineText = new javax.swing.JTextField();
         TotalFineLabel = new javax.swing.JLabel();
-        RollNoLabel = new javax.swing.JLabel();
-        RollNoText = new javax.swing.JTextField();
+        vUserId = new javax.swing.JLabel();
+        tvUserId = new javax.swing.JTextField();
         DueDateLabel = new javax.swing.JLabel();
         AccessionIDLabel = new javax.swing.JLabel();
         BookFineLabel = new javax.swing.JLabel();
@@ -191,10 +149,8 @@ public class librarianHome extends javax.swing.JFrame {
         BookAccessionIDText = new javax.swing.JTextField();
         BookAuthor2Text = new javax.swing.JTextField();
         BookStatusLabel = new javax.swing.JLabel();
-        BookCostLabel = new javax.swing.JLabel();
         BookSubjectLabel = new javax.swing.JLabel();
         BookSubjectText = new javax.swing.JTextField();
-        BookCostText = new javax.swing.JTextField();
         BookStatusText = new javax.swing.JTextField();
         jPanel19 = new javax.swing.JPanel();
         IssueButton = new javax.swing.JButton();
@@ -204,26 +160,22 @@ public class librarianHome extends javax.swing.JFrame {
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        MagazinesTable = new javax.swing.JTable();
+        BooksTable = new javax.swing.JTable();
         jPanel9 = new javax.swing.JPanel();
-        MDATE = new javax.swing.JLabel();
-        MNUMBER = new javax.swing.JLabel();
-        MPERIODICITY = new javax.swing.JLabel();
-        MDateText = new javax.swing.JTextField();
-        MNumberText = new javax.swing.JTextField();
-        MPeriodicityText = new javax.swing.JTextField();
-        MTitleText = new javax.swing.JTextField();
-        MTITLE = new javax.swing.JLabel();
-        MEDITION = new javax.swing.JLabel();
-        MEditionText = new javax.swing.JTextField();
-        MAGAZINE_ID = new javax.swing.JLabel();
-        MagazineIDText = new javax.swing.JTextField();
-        MVOLUME = new javax.swing.JLabel();
-        MVENDOR = new javax.swing.JLabel();
+        vAuthor = new javax.swing.JLabel();
+        tvAuthor = new javax.swing.JTextField();
+        tvName = new javax.swing.JTextField();
+        vName = new javax.swing.JLabel();
+        vDate = new javax.swing.JLabel();
+        tvDate = new javax.swing.JTextField();
+        vAccId = new javax.swing.JLabel();
+        tvAccId = new javax.swing.JTextField();
+        vSubject = new javax.swing.JLabel();
+        vIssued = new javax.swing.JLabel();
         MPUBLISHER = new javax.swing.JLabel();
-        MVolumeText = new javax.swing.JTextField();
-        MPublisherText = new javax.swing.JTextField();
-        MVendorText = new javax.swing.JTextField();
+        tvSubject = new javax.swing.JTextField();
+        tvPublisher = new javax.swing.JTextField();
+        tvIssud = new javax.swing.JTextField();
         jPanel10 = new javax.swing.JPanel();
         MFindButton = new javax.swing.JButton();
         MAddButton = new javax.swing.JButton();
@@ -235,24 +187,20 @@ public class librarianHome extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         JournalsTable = new javax.swing.JTable();
         jPanel11 = new javax.swing.JPanel();
-        JPUBLISHER = new javax.swing.JLabel();
-        JVENDOR = new javax.swing.JLabel();
-        JDATE = new javax.swing.JLabel();
-        JNUMBER = new javax.swing.JLabel();
-        JVendorText = new javax.swing.JTextField();
-        JDateText = new javax.swing.JTextField();
-        JNumberText = new javax.swing.JTextField();
-        JPublisherText = new javax.swing.JTextField();
+        vJPublisher = new javax.swing.JLabel();
+        vJAuthor = new javax.swing.JLabel();
+        tvJVendor = new javax.swing.JTextField();
+        tvJPublisher = new javax.swing.JTextField();
         JTITLE = new javax.swing.JLabel();
         JTitleText = new javax.swing.JTextField();
-        JEDITION = new javax.swing.JLabel();
-        JEditionText = new javax.swing.JTextField();
-        JVOLUME = new javax.swing.JLabel();
-        JVolumeText = new javax.swing.JTextField();
-        JOURNAL_ID = new javax.swing.JLabel();
-        JournalIDText = new javax.swing.JTextField();
-        JPeriodicityText = new javax.swing.JTextField();
-        JPERIODICITY = new javax.swing.JLabel();
+        vIssue = new javax.swing.JLabel();
+        tvIssue = new javax.swing.JTextField();
+        vJDate = new javax.swing.JLabel();
+        tvJDate = new javax.swing.JTextField();
+        vJID = new javax.swing.JLabel();
+        tvJaccId = new javax.swing.JTextField();
+        tvJSubject = new javax.swing.JTextField();
+        vJSubject = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
         JFindButton = new javax.swing.JButton();
         JAddButton = new javax.swing.JButton();
@@ -362,17 +310,6 @@ public class librarianHome extends javax.swing.JFrame {
         StudentNameText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         StudentNameText.setEnabled(false);
 
-        ClassLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        ClassLabel.setForeground(new java.awt.Color(255, 255, 255));
-        ClassLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ClassLabel.setText("CLASS");
-        ClassLabel.setEnabled(false);
-
-        ClassText.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        ClassText.setForeground(new java.awt.Color(0, 0, 153));
-        ClassText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        ClassText.setEnabled(false);
-
         IssueDateLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         IssueDateLabel.setForeground(new java.awt.Color(255, 255, 255));
         IssueDateLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -390,16 +327,16 @@ public class librarianHome extends javax.swing.JFrame {
         TotalFineLabel.setText("FINE");
         TotalFineLabel.setEnabled(false);
 
-        RollNoLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        RollNoLabel.setForeground(new java.awt.Color(255, 255, 255));
-        RollNoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        RollNoLabel.setText("ROLL NO");
-        RollNoLabel.setEnabled(false);
+        vUserId.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        vUserId.setForeground(new java.awt.Color(255, 255, 255));
+        vUserId.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        vUserId.setText("USER ID");
+        vUserId.setEnabled(false);
 
-        RollNoText.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        RollNoText.setForeground(new java.awt.Color(0, 0, 153));
-        RollNoText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        RollNoText.setEnabled(false);
+        tvUserId.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        tvUserId.setForeground(new java.awt.Color(0, 0, 153));
+        tvUserId.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tvUserId.setEnabled(false);
 
         DueDateLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         DueDateLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -502,9 +439,14 @@ public class librarianHome extends javax.swing.JFrame {
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel15Layout.createSequentialGroup()
+                        .addComponent(StudentNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(StudentNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34))
                     .addGroup(jPanel15Layout.createSequentialGroup()
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel15Layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel15Layout.createSequentialGroup()
                                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(Book1AccessionID, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(Book2AccessionID, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -526,29 +468,7 @@ public class librarianHome extends javax.swing.JFrame {
                                     .addComponent(BookFineLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(Book3Fine, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(Book2Fine, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(Book1Fine, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(2, 2, 2))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel15Layout.createSequentialGroup()
-                                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(ClassLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
-                                    .addComponent(StudentNameLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel15Layout.createSequentialGroup()
-                                        .addComponent(ClassText, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(RollNoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(191, 191, 191))
-                                    .addComponent(StudentNameText))))
-                        .addGap(34, 34, 34))
-                    .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel15Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(RollNoText, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel15Layout.createSequentialGroup()
-                                .addComponent(AccessionIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(Book1Fine, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel15Layout.createSequentialGroup()
                                 .addComponent(IssuedLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -556,7 +476,15 @@ public class librarianHome extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(TotalFineLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(TotalFineText)))
+                                .addComponent(TotalFineText))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel15Layout.createSequentialGroup()
+                                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(AccessionIDLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel15Layout.createSequentialGroup()
+                                        .addComponent(vUserId, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(tvUserId, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(36, 36, 36))))
         );
         jPanel15Layout.setVerticalGroup(
@@ -567,10 +495,8 @@ public class librarianHome extends javax.swing.JFrame {
                     .addComponent(StudentNameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ClassLabel)
-                    .addComponent(ClassText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(RollNoLabel)
-                    .addComponent(RollNoText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(vUserId)
+                    .addComponent(tvUserId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(IssuedLabel)
@@ -634,7 +560,7 @@ public class librarianHome extends javax.swing.JFrame {
         BookAuthor1Label.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         BookAuthor1Label.setForeground(new java.awt.Color(255, 255, 255));
         BookAuthor1Label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        BookAuthor1Label.setText("AUTHOR1");
+        BookAuthor1Label.setText("AUTHOR");
         BookAuthor1Label.setEnabled(false);
 
         BookAccessionIDLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -646,7 +572,7 @@ public class librarianHome extends javax.swing.JFrame {
         BookEditionLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         BookEditionLabel.setForeground(new java.awt.Color(255, 255, 255));
         BookEditionLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        BookEditionLabel.setText("EDITION");
+        BookEditionLabel.setText("GENRE");
         BookEditionLabel.setEnabled(false);
 
         BookPublisherLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -678,14 +604,8 @@ public class librarianHome extends javax.swing.JFrame {
         BookStatusLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         BookStatusLabel.setForeground(new java.awt.Color(255, 255, 255));
         BookStatusLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        BookStatusLabel.setText("STATUS");
+        BookStatusLabel.setText("ISSUED");
         BookStatusLabel.setEnabled(false);
-
-        BookCostLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        BookCostLabel.setForeground(new java.awt.Color(255, 255, 255));
-        BookCostLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        BookCostLabel.setText("COST");
-        BookCostLabel.setEnabled(false);
 
         BookSubjectLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         BookSubjectLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -697,11 +617,6 @@ public class librarianHome extends javax.swing.JFrame {
         BookSubjectText.setForeground(new java.awt.Color(0, 0, 153));
         BookSubjectText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         BookSubjectText.setEnabled(false);
-
-        BookCostText.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        BookCostText.setForeground(new java.awt.Color(0, 0, 153));
-        BookCostText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        BookCostText.setEnabled(false);
 
         BookStatusText.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         BookStatusText.setForeground(new java.awt.Color(0, 0, 153));
@@ -720,8 +635,8 @@ public class librarianHome extends javax.swing.JFrame {
                             .addGroup(jPanel14Layout.createSequentialGroup()
                                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(BookTitleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(BookAuthor1Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(BookAccessionIDLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(BookAccessionIDLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                                    .addComponent(BookAuthor1Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel14Layout.createSequentialGroup()
@@ -730,16 +645,13 @@ public class librarianHome extends javax.swing.JFrame {
                                         .addComponent(BookStatusLabel)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(BookStatusText, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(BookTitleText)
-                                    .addComponent(BookAuthor2Text)))
+                                    .addComponent(BookAuthor2Text)
+                                    .addComponent(BookTitleText, javax.swing.GroupLayout.Alignment.TRAILING)))
                             .addGroup(jPanel14Layout.createSequentialGroup()
-                                .addComponent(BookEditionLabel)
-                                .addGap(18, 18, 18)
-                                .addComponent(BookEditionText, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6)
+                                .addComponent(BookEditionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(BookCostLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(BookCostText, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(BookEditionText))))
                     .addGroup(jPanel14Layout.createSequentialGroup()
                         .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(BookPublisherLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -748,7 +660,7 @@ public class librarianHome extends javax.swing.JFrame {
                         .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(BookSubjectText, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
                             .addComponent(BookPublisherText))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -770,9 +682,7 @@ public class librarianHome extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BookEditionLabel)
-                    .addComponent(BookEditionText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BookCostLabel)
-                    .addComponent(BookCostText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BookEditionText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BookPublisherLabel)
@@ -913,7 +823,7 @@ public class librarianHome extends javax.swing.JFrame {
 
         jPanel7.setBackground(new java.awt.Color(0, 0, 102));
 
-        MagazinesTable.setModel(new javax.swing.table.DefaultTableModel(
+        BooksTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -924,49 +834,26 @@ public class librarianHome extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        MagazinesTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        BooksTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                MagazinesTableMouseClicked(evt);
+                BooksTableMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(MagazinesTable);
+        jScrollPane2.setViewportView(BooksTable);
 
         jPanel9.setBackground(new java.awt.Color(0, 0, 102));
 
-        MDATE.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        MDATE.setForeground(new java.awt.Color(255, 255, 255));
-        MDATE.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        MDATE.setText("DATE");
+        vAuthor.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        vAuthor.setForeground(new java.awt.Color(255, 255, 255));
+        vAuthor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        vAuthor.setText("AUTHOR");
 
-        MNUMBER.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        MNUMBER.setForeground(new java.awt.Color(255, 255, 255));
-        MNUMBER.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        MNUMBER.setText("NUMBER");
-
-        MPERIODICITY.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        MPERIODICITY.setForeground(new java.awt.Color(255, 255, 255));
-        MPERIODICITY.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        MPERIODICITY.setText("PERIODICITY");
-
-        MDateText.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        MDateText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        MDateText.setEnabled(false);
-
-        MNumberText.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        MNumberText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        MNumberText.setEnabled(false);
-        MNumberText.addActionListener(new java.awt.event.ActionListener() {
+        tvAuthor.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        tvAuthor.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tvAuthor.setEnabled(false);
+        tvAuthor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MNumberTextActionPerformed(evt);
-            }
-        });
-
-        MPeriodicityText.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        MPeriodicityText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        MPeriodicityText.setEnabled(false);
-        MPeriodicityText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MPeriodicityTextActionPerformed(evt);
+                tvAuthorActionPerformed(evt);
             }
         });
 
@@ -976,88 +863,74 @@ public class librarianHome extends javax.swing.JFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(MPERIODICITY, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(MNUMBER, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(MDATE, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(vAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(MNumberText, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
-                    .addComponent(MPeriodicityText)
-                    .addComponent(MDateText))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(tvAuthor)
+                .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(MPERIODICITY)
-                    .addComponent(MPeriodicityText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(MNUMBER)
-                    .addComponent(MNumberText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(MDATE)
-                    .addComponent(MDateText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(vAuthor)
+                    .addComponent(tvAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        MTitleText.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        MTitleText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        MTitleText.setEnabled(false);
+        tvName.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        tvName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tvName.setEnabled(false);
 
-        MTITLE.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        MTITLE.setForeground(new java.awt.Color(255, 255, 255));
-        MTITLE.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        MTITLE.setText("TITLE");
+        vName.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        vName.setForeground(new java.awt.Color(255, 255, 255));
+        vName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        vName.setText("TITLE");
 
-        MEDITION.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        MEDITION.setForeground(new java.awt.Color(255, 255, 255));
-        MEDITION.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        MEDITION.setText("EDITION");
+        vDate.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        vDate.setForeground(new java.awt.Color(255, 255, 255));
+        vDate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        vDate.setText("DATE");
 
-        MEditionText.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        MEditionText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        MEditionText.setEnabled(false);
+        tvDate.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        tvDate.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tvDate.setEnabled(false);
 
-        MAGAZINE_ID.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        MAGAZINE_ID.setForeground(new java.awt.Color(255, 255, 255));
-        MAGAZINE_ID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        MAGAZINE_ID.setText("MAGAZINE ID");
+        vAccId.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        vAccId.setForeground(new java.awt.Color(255, 255, 255));
+        vAccId.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        vAccId.setText("ACCESSION ID");
 
-        MagazineIDText.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        MagazineIDText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        MagazineIDText.setEnabled(false);
+        tvAccId.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        tvAccId.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tvAccId.setEnabled(false);
 
-        MVOLUME.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        MVOLUME.setForeground(new java.awt.Color(255, 255, 255));
-        MVOLUME.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        MVOLUME.setText("VOLUME");
+        vSubject.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        vSubject.setForeground(new java.awt.Color(255, 255, 255));
+        vSubject.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        vSubject.setText("SUBJECT");
 
-        MVENDOR.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        MVENDOR.setForeground(new java.awt.Color(255, 255, 255));
-        MVENDOR.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        MVENDOR.setText("VENDOR");
+        vIssued.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        vIssued.setForeground(new java.awt.Color(255, 255, 255));
+        vIssued.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        vIssued.setText("ISSUED");
 
         MPUBLISHER.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         MPUBLISHER.setForeground(new java.awt.Color(255, 255, 255));
         MPUBLISHER.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         MPUBLISHER.setText("PUBLISHER");
 
-        MVolumeText.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        MVolumeText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        MVolumeText.setEnabled(false);
+        tvSubject.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        tvSubject.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tvSubject.setEnabled(false);
 
-        MPublisherText.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        MPublisherText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        MPublisherText.setEnabled(false);
+        tvPublisher.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        tvPublisher.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tvPublisher.setEnabled(false);
 
-        MVendorText.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        MVendorText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        MVendorText.setEnabled(false);
+        tvIssud.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        tvIssud.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tvIssud.setEnabled(false);
 
         jPanel10.setBackground(new java.awt.Color(0, 0, 102));
         jPanel10.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -1201,42 +1074,38 @@ public class librarianHome extends javax.swing.JFrame {
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addComponent(MVENDOR, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(MVendorText, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel7Layout.createSequentialGroup()
-                                    .addComponent(MVOLUME, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(24, 24, 24)
-                                    .addComponent(MVolumeText))
-                                .addGroup(jPanel7Layout.createSequentialGroup()
-                                    .addComponent(MPUBLISHER, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(MPublisherText, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(MTITLE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(MEDITION, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
+                                    .addComponent(vName, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                                    .addComponent(vDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(24, 24, 24)
                                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tvName)
                                     .addGroup(jPanel7Layout.createSequentialGroup()
-                                        .addGap(237, 237, 237)
-                                        .addComponent(MAGAZINE_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(tvDate, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(MagazineIDText, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel7Layout.createSequentialGroup()
-                                        .addGap(24, 24, 24)
-                                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(MTitleText, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                                .addComponent(MEditionText, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(vAccId, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(tvAccId, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(vSubject, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(24, 24, 24)
+                                .addComponent(tvSubject, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(vIssued, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(tvIssud))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(MPUBLISHER, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(tvPublisher))
+                            .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(476, 476, 476))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(478, Short.MAX_VALUE))))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1250,35 +1119,31 @@ public class librarianHome extends javax.swing.JFrame {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(MTITLE)
-                            .addComponent(MTitleText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(vName)
+                            .addComponent(tvName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(MEDITION)
-                            .addComponent(MAGAZINE_ID)
-                            .addComponent(MagazineIDText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(MEditionText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addGap(11, 11, 11)
-                                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(MVOLUME)
-                                    .addComponent(MVolumeText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(MVENDOR)
-                                    .addComponent(MVendorText, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(MPUBLISHER)
-                                    .addComponent(MPublisherText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                            .addComponent(vDate)
+                            .addComponent(vAccId)
+                            .addComponent(tvAccId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tvDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(vSubject)
+                            .addComponent(tvSubject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(vIssued)
+                            .addComponent(tvIssud, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(MPUBLISHER)
+                            .addComponent(tvPublisher, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(15, 15, 15)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane2.addTab("MAGAZINES", jPanel7);
+        jTabbedPane2.addTab("BOOKS", jPanel7);
 
         jPanel8.setBackground(new java.awt.Color(0, 0, 102));
 
@@ -1302,93 +1167,52 @@ public class librarianHome extends javax.swing.JFrame {
 
         jPanel11.setBackground(new java.awt.Color(0, 0, 102));
 
-        JPUBLISHER.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        JPUBLISHER.setForeground(new java.awt.Color(255, 255, 255));
-        JPUBLISHER.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        JPUBLISHER.setText("PUBLISHER");
+        vJPublisher.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        vJPublisher.setForeground(new java.awt.Color(255, 255, 255));
+        vJPublisher.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        vJPublisher.setText("PUBLISHER");
 
-        JVENDOR.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        JVENDOR.setForeground(new java.awt.Color(255, 255, 255));
-        JVENDOR.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        JVENDOR.setText("VENDOR");
+        vJAuthor.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        vJAuthor.setForeground(new java.awt.Color(255, 255, 255));
+        vJAuthor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        vJAuthor.setText("VENDOR");
 
-        JDATE.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        JDATE.setForeground(new java.awt.Color(255, 255, 255));
-        JDATE.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        JDATE.setText("DATE");
+        tvJVendor.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        tvJVendor.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tvJVendor.setEnabled(false);
 
-        JNUMBER.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        JNUMBER.setForeground(new java.awt.Color(255, 255, 255));
-        JNUMBER.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        JNUMBER.setText("NUMBER");
-
-        JVendorText.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        JVendorText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        JVendorText.setEnabled(false);
-
-        JDateText.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        JDateText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        JDateText.setEnabled(false);
-
-        JNumberText.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        JNumberText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        JNumberText.setEnabled(false);
-        JNumberText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JNumberTextActionPerformed(evt);
-            }
-        });
-
-        JPublisherText.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        JPublisherText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        JPublisherText.setEnabled(false);
+        tvJPublisher.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        tvJPublisher.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tvJPublisher.setEnabled(false);
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(vJAuthor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addComponent(JVENDOR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18))
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addComponent(JPUBLISHER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(42, 42, 42)))
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(JPublisherText, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
-                    .addComponent(JVendorText))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(JNUMBER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(JDATE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(vJPublisher, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(JDateText, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
-                    .addComponent(JNumberText))
-                .addGap(322, 322, 322))
+                    .addComponent(tvJVendor, javax.swing.GroupLayout.DEFAULT_SIZE, 634, Short.MAX_VALUE)
+                    .addComponent(tvJPublisher))
+                .addGap(223, 223, 223))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JVENDOR)
-                    .addComponent(JVendorText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(vJAuthor)
+                    .addComponent(tvJVendor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JPUBLISHER)
-                    .addComponent(JPublisherText)))
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JNUMBER)
-                    .addComponent(JNumberText))
-                .addGap(11, 11, 11)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JDATE)
-                    .addComponent(JDateText)))
+                    .addComponent(vJPublisher)
+                    .addComponent(tvJPublisher)))
         );
 
         JTITLE.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
@@ -1400,41 +1224,41 @@ public class librarianHome extends javax.swing.JFrame {
         JTitleText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         JTitleText.setEnabled(false);
 
-        JEDITION.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        JEDITION.setForeground(new java.awt.Color(255, 255, 255));
-        JEDITION.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        JEDITION.setText("EDITION");
+        vIssue.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        vIssue.setForeground(new java.awt.Color(255, 255, 255));
+        vIssue.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        vIssue.setText("ISSUE");
 
-        JEditionText.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        JEditionText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        JEditionText.setEnabled(false);
+        tvIssue.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        tvIssue.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tvIssue.setEnabled(false);
 
-        JVOLUME.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        JVOLUME.setForeground(new java.awt.Color(255, 255, 255));
-        JVOLUME.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        JVOLUME.setText("VOLUME");
+        vJDate.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        vJDate.setForeground(new java.awt.Color(255, 255, 255));
+        vJDate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        vJDate.setText("DATE");
 
-        JVolumeText.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        JVolumeText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        JVolumeText.setEnabled(false);
+        tvJDate.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        tvJDate.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tvJDate.setEnabled(false);
 
-        JOURNAL_ID.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        JOURNAL_ID.setForeground(new java.awt.Color(255, 255, 255));
-        JOURNAL_ID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        JOURNAL_ID.setText("JOURNAL ID");
+        vJID.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        vJID.setForeground(new java.awt.Color(255, 255, 255));
+        vJID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        vJID.setText("JOURNAL ID");
 
-        JournalIDText.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        JournalIDText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        JournalIDText.setEnabled(false);
+        tvJaccId.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        tvJaccId.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tvJaccId.setEnabled(false);
 
-        JPeriodicityText.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        JPeriodicityText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        JPeriodicityText.setEnabled(false);
+        tvJSubject.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        tvJSubject.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tvJSubject.setEnabled(false);
 
-        JPERIODICITY.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        JPERIODICITY.setForeground(new java.awt.Color(255, 255, 255));
-        JPERIODICITY.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        JPERIODICITY.setText("PERIODICITY");
+        vJSubject.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        vJSubject.setForeground(new java.awt.Color(255, 255, 255));
+        vJSubject.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        vJSubject.setText("Subject");
 
         jPanel12.setBackground(new java.awt.Color(0, 0, 102));
         jPanel12.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -1567,39 +1391,35 @@ public class librarianHome extends javax.swing.JFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 1150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(vJID, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                            .addComponent(JTITLE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(vJSubject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(JTitleText, javax.swing.GroupLayout.PREFERRED_SIZE, 633, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(tvJaccId, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tvJSubject, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
                                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(JOURNAL_ID, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
-                                    .addComponent(JTITLE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(vIssue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(vJDate, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(JTitleText, javax.swing.GroupLayout.PREFERRED_SIZE, 633, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel8Layout.createSequentialGroup()
-                                        .addComponent(JournalIDText, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(JEDITION, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(JVOLUME, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                                .addComponent(JVolumeText)
-                                                .addGap(18, 18, 18))
-                                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                                .addComponent(JEditionText, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)))
-                                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addComponent(JPERIODICITY)
-                                .addGap(18, 18, 18)
-                                .addComponent(JPeriodicityText, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(14, 14, 14)))
-                .addContainerGap(45, Short.MAX_VALUE))
+                                        .addComponent(tvJDate)
+                                        .addGap(18, 18, 18))
+                                    .addGroup(jPanel8Layout.createSequentialGroup()
+                                        .addComponent(tvIssue, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)))
+                                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 1150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 836, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(496, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1616,23 +1436,24 @@ public class librarianHome extends javax.swing.JFrame {
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel8Layout.createSequentialGroup()
                                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(JOURNAL_ID)
-                                    .addComponent(JournalIDText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(vJID)
+                                    .addComponent(tvJaccId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(11, 11, 11))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(JEDITION)
-                                    .addComponent(JEditionText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(vIssue)
+                                    .addComponent(tvIssue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(JPERIODICITY)
-                            .addComponent(JPeriodicityText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JVOLUME)
-                            .addComponent(JVolumeText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(vJSubject)
+                                .addComponent(vJDate)
+                                .addComponent(tvJDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tvJSubject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("JOURNALS", jPanel8);
@@ -1672,20 +1493,18 @@ public class librarianHome extends javax.swing.JFrame {
 
     private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
         // TODO add your handling code here:
-        updateTable( false );
     }//GEN-LAST:event_jTabbedPane1MouseClicked
 
     private void jTabbedPane2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane2MouseClicked
         // TODO add your handling code here:
-        updateTable( "Magazines" , false );
-        updateTable( "Journals" , false );
-        updateTable( false );
+        updateTable( "book" , false );
+        updateTable( "journal" , false );
     }//GEN-LAST:event_jTabbedPane2MouseClicked
 
     private void JPrintButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JPrintButtonActionPerformed
         // TODO add your handling code here:
-        MessageFormat header = new MessageFormat("C:\\Users\\LUV\\Documents\\NetBeansProjects\\Project\\Images\\PrintHeader.png");
-        MessageFormat footer = new MessageFormat("C:\\Users\\LUV\\Documents\\NetBeansProjects\\Project\\Images\\PrintFooter.png");
+        MessageFormat header = new MessageFormat("Database Contents");
+        MessageFormat footer = new MessageFormat("Search More");
 
         try{
             JournalsTable.print( JTable.PrintMode.FIT_WIDTH , header , footer );
@@ -1696,7 +1515,7 @@ public class librarianHome extends javax.swing.JFrame {
 
     private void JEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JEditButtonActionPerformed
         // TODO add your handling code here:
-        JournalMagazine frame = new JournalMagazine( AccessionID , "EDIT" , "Journals" );
+        JournalMagazine frame = new JournalMagazine( AccessionID , "EDIT" , "journal" );
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         JAddButton.setEnabled(false);
@@ -1711,9 +1530,9 @@ public class librarianHome extends javax.swing.JFrame {
         // TODO add your handling code here:
         jEmpty();
         if( column == null )
-        updateTable( "Journals" , false );
+        updateTable( "journal" , false );
         else
-        updateTable( "Journals" , true );
+        updateTable( "journal" , true );
         column = null;
         value = null;
         JFindButton.setEnabled(true);
@@ -1727,9 +1546,13 @@ public class librarianHome extends javax.swing.JFrame {
 
         if( Choice == 0  ){
             try{
-                String sql = "delete from Journals where ID=?;";
+                String sql = "delete from journal where acc_id=?;";
                 pst = conn.prepareStatement(sql);
-                pst.setString( 1, JournalIDText.getText() );
+                pst.setString( 1, tvJaccId.getText() );
+                pst.execute();
+                sql = "delete from bibliography where acc_id=?;";
+                pst = conn.prepareStatement(sql);
+                pst.setString( 1, tvJaccId.getText() );
                 pst.execute();
             }catch( Exception e ){
                 JOptionPane.showMessageDialog( null, e );
@@ -1742,13 +1565,13 @@ public class librarianHome extends javax.swing.JFrame {
                 }
             }
             jEmpty();
-            updateTable( "Journals" , false );
+            updateTable( "journal" , false );
         }
     }//GEN-LAST:event_JDeleteButtonActionPerformed
 
     private void JAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JAddButtonActionPerformed
         // TODO add your handling code here:
-        JournalMagazine frame = new JournalMagazine( AccessionID , "ADD" , "Journals" );
+        JournalMagazine frame = new JournalMagazine( AccessionID , "ADD" , "journal" );
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         JAddButton.setEnabled(false);
@@ -1779,30 +1602,26 @@ public class librarianHome extends javax.swing.JFrame {
         try{
             int row = JournalsTable.getSelectedRow();
             AccessionID = JournalsTable.getModel().getValueAt(row, 0).toString();
-            String sql = "select ID,"
-            + "Title,"
-            + "PublisherID,"
-            + "Vendor,"
-            + "Periodicity,"
-            + "Edition,"
-            + "Volume,"
-            + "Number,"
-            + "ReceiptDate "
-            + "from Journals where ID='"+AccessionID+"';";
+            String sql = "select journal.acc_id,"
+            + "bibname,"
+            + "author,"
+            + "publication,"
+            + "doa,"
+            + "issue_no,"
+            + "sub_name"
+            + "from bibliography,journal,subjects where bibliography.acc_id='"+AccessionID+"' and bibliography.acc_id = journal.acc_id and bibliography.sub_id = subjects.sub_id;";
 
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
 
             if( rs.next() ){
-                JournalIDText.setText( rs.getString("ID") );
-                JTitleText.setText( rs.getString("Title") );
-                JPublisherText.setText( rs.getString("PublisherID") );
-                JVendorText.setText( rs.getString("Vendor") );
-                JEditionText.setText( rs.getString("Edition") );
-                JPeriodicityText.setText( rs.getString("Periodicity") );
-                JVolumeText.setText( rs.getString("Volume") );
-                JDateText.setText( rs.getString("ReceiptDate") );
-                JNumberText.setText( rs.getString("Number") );
+                tvJaccId.setText( rs.getString("journal.acc_id") );
+                JTitleText.setText( rs.getString("bibname") );
+                tvJPublisher.setText( rs.getString("publication") );
+                tvJVendor.setText( rs.getString("author") );
+                tvIssue.setText( rs.getString("issue_no") );
+                tvJSubject.setText( rs.getString("sub_name") );
+                tvJDate.setText( rs.getString("doa") );
             }
         }catch( Exception e ){
             JOptionPane.showMessageDialog( null, e );
@@ -1821,11 +1640,11 @@ public class librarianHome extends javax.swing.JFrame {
 
     private void MPrintButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MPrintButtonActionPerformed
         // TODO add your handling code here:
-        MessageFormat header = new MessageFormat("C:\\Users\\LUV\\Documents\\NetBeansProjects\\Project\\Images\\PrintHeader.png");
-        MessageFormat footer = new MessageFormat("C:\\Users\\LUV\\Documents\\NetBeansProjects\\Project\\Images\\PrintFooter.png");
+        MessageFormat header = new MessageFormat("Database Content");
+        MessageFormat footer = new MessageFormat("Search More");
 
         try{
-            MagazinesTable.print( JTable.PrintMode.FIT_WIDTH , header , footer );
+            BooksTable.print( JTable.PrintMode.FIT_WIDTH , header , footer );
         }catch( java.awt.print.PrinterException e ){
             System.err.format( "Cannot Print %s%n" , e.getMessage() );
         }
@@ -1833,7 +1652,7 @@ public class librarianHome extends javax.swing.JFrame {
 
     private void MEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MEditButtonActionPerformed
         // TODO add your handling code here:
-        JournalMagazine frame = new JournalMagazine( AccessionID , "EDIT" , "Magazines" );
+        JournalMagazine frame = new JournalMagazine( AccessionID , "EDIT" , "book" );
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         MAddButton.setEnabled(false);
@@ -1848,9 +1667,9 @@ public class librarianHome extends javax.swing.JFrame {
         // TODO add your handling code here:
         mEmpty();
         if( column == null )
-        updateTable( "Magazines" , false );
+        updateTable( "book" , false );
         else
-        updateTable( "Magazines" , true );
+        updateTable( "book" , true );
         column = null;
         value = null;
         MFindButton.setEnabled(true);
@@ -1864,9 +1683,14 @@ public class librarianHome extends javax.swing.JFrame {
 
         if( Choice == 0  ){
             try{
-                String sql = "delete from Magazines where ID=?;";
+                String sql = "delete from bibliography where acc_id=?;";
                 pst = conn.prepareStatement(sql);
-                pst.setString( 1, MagazineIDText.getText() );
+                pst.setString( 1, tvAccId.getText() );
+                pst.execute();
+                
+                sql = "delete from book where acc_id=?;";
+                pst = conn.prepareStatement(sql);
+                pst.setString( 1, tvAccId.getText() );
                 pst.execute();
             }catch( Exception e ){
                 JOptionPane.showMessageDialog( null, e );
@@ -1879,13 +1703,13 @@ public class librarianHome extends javax.swing.JFrame {
                 }
             }
             mEmpty();
-            updateTable( "Magazines" , false );
+            updateTable( "book" , false );
         }
     }//GEN-LAST:event_MDeleteButtonActionPerformed
 
     private void MAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MAddButtonActionPerformed
         // TODO add your handling code here:
-        JournalMagazine frame = new JournalMagazine( AccessionID , "ADD" , "Magazines" );
+        JournalMagazine frame = new JournalMagazine( AccessionID , "ADD" , "book" );
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         MAddButton.setEnabled(false);
@@ -1911,35 +1735,31 @@ public class librarianHome extends javax.swing.JFrame {
         mEmpty();
     }//GEN-LAST:event_MFindButtonActionPerformed
 
-    private void MagazinesTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MagazinesTableMouseClicked
+    private void BooksTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BooksTableMouseClicked
         // TODO add your handling code here:
         try{
-            int row = MagazinesTable.getSelectedRow();
-            AccessionID = MagazinesTable.getModel().getValueAt(row, 0).toString();
-            String sql = "select ID,"
-            + "Title,"
-            + "PublisherID,"
-            + "Vendor,"
-            + "Periodicity,"
-            + "Edition,"
-            + "Volume,"
-            + "Number,"
-            + "ReceiptDate "
-            + "from Magazines where ID='"+AccessionID+"';";
+            int row = BooksTable.getSelectedRow();
+            AccessionID = BooksTable.getModel().getValueAt(row, 0).toString();
+            String sql = "select journal.acc_id,"
+                    + "bibname,"
+                    + "author,"
+                    + "publication,"
+                    + "doa,"
+                    + "issued,"
+                    + "sub_name"
+                    + "from bibliography,book,subjects where bibliography.acc_id='"+AccessionID+"' and bibliography.acc_id = book.acc_id and bibliography.sub_id = subjects.sub_id;";
 
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
 
             if( rs.next() ){
-                MagazineIDText.setText( rs.getString("ID") );
-                MTitleText.setText( rs.getString("Title") );
-                MPublisherText.setText( rs.getString("PublisherID") );
-                MVendorText.setText( rs.getString("Vendor") );
-                MEditionText.setText( rs.getString("Edition") );
-                MPeriodicityText.setText( rs.getString("Periodicity") );
-                MVolumeText.setText( rs.getString("Volume") );
-                MDateText.setText( rs.getString("ReceiptDate") );
-                MNumberText.setText( rs.getString("Number") );
+                tvAccId.setText( rs.getString("journal.acc_id") );
+                tvName.setText( rs.getString("bibname") );
+                tvPublisher.setText( rs.getString("publication") );
+                tvIssud.setText( rs.getString("issued") );
+                tvDate.setText( rs.getString("doa") );
+                tvAuthor.setText( rs.getString("author") );
+                tvSubject.setText( rs.getString("sub_name") );
             }
         }catch( Exception e ){
             JOptionPane.showMessageDialog( null, e );
@@ -1954,22 +1774,21 @@ public class librarianHome extends javax.swing.JFrame {
 
         MEditButton.setEnabled(true);
         MDeleteButton.setEnabled(true);
-    }//GEN-LAST:event_MagazinesTableMouseClicked
+    }//GEN-LAST:event_BooksTableMouseClicked
 
     private void ResetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetButtonActionPerformed
         // TODO add your handling code here:
+        Update();
         BookTitleText.setText( null );
         BookAuthor2Text.setText( null );
         BookAccessionIDText.setText( null );
         BookStatusText.setText( null );
         BookEditionText.setText( null );
-        BookCostText.setText( null );
         BookPublisherText.setText( null );
         BookSubjectText.setText( null );
 
         StudentNameText.setText( null );
-        ClassText.setText( null );
-        RollNoText.setText( null );
+        tvUserId.setText( null );
         IssuedText.setText( null );
         Book1AccessionID.setText( null );
         Book1IssueDate.setText( null );
@@ -1985,9 +1804,7 @@ public class librarianHome extends javax.swing.JFrame {
         Book3Fine.setText( null );
         TotalFineText.setText( null );
 
-        BookCode.setEnabled( false );
         FindBook.setEnabled( false );
-        StudentCode.setEnabled( false );
         FindStudent.setEnabled( false );
         IssueButton.setEnabled(false);
         ReturnButton.setEnabled(false);
@@ -2003,11 +1820,12 @@ public class librarianHome extends javax.swing.JFrame {
             Book1IssueDate.setText( null );
             Book1DueDate.setText( null );
             Book1Fine.setText( null );
-            BookStatusText.setText( "AVAILABLE" );
+            BookStatusText.setText( "true" );
             int number = Integer.valueOf( IssuedText.getText() );
             number --;
             IssuedText.setText( String.valueOf(number) );
             Update();
+            Refresh();
         }
         else if( Book2AccessionID.getText().equals(BookAccessionIDText.getText()) ){
             JOptionPane.showMessageDialog( null, "Book Returned!!" );
@@ -2015,11 +1833,12 @@ public class librarianHome extends javax.swing.JFrame {
             Book2IssueDate.setText( null );
             Book2DueDate.setText( null );
             Book2Fine.setText( null );
-            BookStatusText.setText( "AVAILABLE" );
+            BookStatusText.setText( "true" );
             int number = Integer.valueOf( IssuedText.getText() );
             number --;
             IssuedText.setText( String.valueOf(number) );
             Update();
+            Refresh();
         }
         else if( Book3AccessionID.getText().equals(BookAccessionIDText.getText()) ){
             JOptionPane.showMessageDialog( null, "Book Returned!!" );
@@ -2027,11 +1846,12 @@ public class librarianHome extends javax.swing.JFrame {
             Book3IssueDate.setText( null );
             Book3DueDate.setText( null );
             Book3Fine.setText( null );
-            BookStatusText.setText( "AVAILABLE" );
+            BookStatusText.setText( "true" );
             int number = Integer.valueOf( IssuedText.getText() );
             number --;
             IssuedText.setText( String.valueOf(number) );
             Update();
+            Refresh();
         }
         else
         JOptionPane.showMessageDialog( null, "Book is not issued by this Student!!" );
@@ -2067,7 +1887,7 @@ public class librarianHome extends javax.swing.JFrame {
             IssuedText.setText( String.valueOf(number) );
         }
         IssueButton.setEnabled(false);
-        BookStatusText.setText( "ISSUED" );
+        BookStatusText.setText( "false" );
         Update();
         JOptionPane.showMessageDialog( null, "Book has been Issued!!" );
     }//GEN-LAST:event_IssueButtonActionPerformed
@@ -2080,70 +1900,14 @@ public class librarianHome extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         try{
-            String sql = "select * from Students where Barcode='"+StudentCode.getText()+"';";
-
+            String sql = "select bibname from user where acc_id='"+StudentCode.getText()+"';";
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
-            float fine = 0;
-            long days;
-            Date date1 = new Date(),date2;
-
             if( rs.next() ){
-                StudentNameText.setText( rs.getString("Name") );
-                ClassText.setText( rs.getString("Class") );
-                RollNoText.setText( rs.getString("RollNo") );
-                IssuedText.setText( rs.getString("Issued") );
-
-                Book1AccessionID.setText( rs.getString("Book1AccessionID") );
-                Book1IssueDate.setText( rs.getString("Book1IssueDate") );
-                Book1DueDate.setText( rs.getString("Book1DueDate") );
-                if( !("".equals(Book1DueDate.getText())) ){
-                    date2 = new SimpleDateFormat("yyyy-MM-dd").parse(Book1DueDate.getText());
-                    if( date1.after(date2) ){
-                        days = Math.abs( date2.getTime() - date1.getTime() )/(1000*60*60*24);
-                        fine = ( days + 2 )*10;
-                    }
-                    else
-                    fine = 0;
-                }
-                Book1Fine.setText( String.valueOf(fine) );
-
-                Book2AccessionID.setText( rs.getString("Book2AccessionID") );
-                Book2IssueDate.setText( rs.getString("Book2IssueDate") );
-                Book2DueDate.setText( rs.getString("Book2DueDate") );
-                if( !("".equals(Book2DueDate.getText())) ){
-                    date2 = new SimpleDateFormat("yyyy-MM-dd").parse(Book2DueDate.getText());
-                    if( date1.after(date2) ){
-                        days = Math.abs( date2.getTime() - date1.getTime() )/(1000*60*60*24);
-                        fine = ( days + 2 )*10;
-                    }
-                    else
-                    fine = 0;
-                }
-                Book2Fine.setText( String.valueOf(fine) );
-
-                Book3AccessionID.setText( rs.getString("Book3AccessionID") );
-                Book3IssueDate.setText( rs.getString("Book3IssueDate") );
-                Book3DueDate.setText( rs.getString("Book3DueDate") );
-                if( !("".equals(Book3DueDate.getText())) ){
-                    date2 = new SimpleDateFormat("yyyy-MM-dd").parse(Book3DueDate.getText());
-                    if( date1.after(date2) ){
-                        days = Math.abs( date2.getTime() - date1.getTime() )/(1000*60*60*24);
-                        fine = ( days + 2 )*10;
-                    }
-                    else
-                    fine = 0;
-                }
-                Book3Fine.setText( String.valueOf(fine) );
-
-                fine += Float.valueOf(Book1Fine.getText());
-                fine += Float.valueOf(Book2Fine.getText());
-                TotalFineText.setText( String.valueOf(fine) );
+                StudentNameText.setText( rs.getString("bibname") );
+                tvUserId.setText( StudentCode.getText() );
             }
-            else{
-                JOptionPane.showMessageDialog( null, "No record found!!" );
-                StudentCode.setText(null);
-            }
+            Refresh();
         }catch( Exception e ){
             JOptionPane.showMessageDialog( null, e );
         }finally{
@@ -2164,20 +1928,19 @@ public class librarianHome extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         try{
-            String sql = "select * from Books where BarCode='"+BookCode.getText()+"';";
+            String sql = "select bibname,author,book.acc_id,issued,genre,publication,sub_name from bibliography,book,subjects where acc_id='"+BookCode.getText()+"' and book.acc_id = bibliography.acc_id and bibliography.sub_id = subjects.sub_id;";
 
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
 
             if( rs.next() ){
-                BookTitleText.setText( rs.getString("Title") );
-                BookAuthor2Text.setText( rs.getString("AuthorCode2") );
-                BookAccessionIDText.setText( rs.getString("AccessionID") );
-                BookStatusText.setText( rs.getString("Status") );
-                BookEditionText.setText( rs.getString("Edition") );
-                BookCostText.setText( rs.getString("Cost") );
-                BookPublisherText.setText( rs.getString("PublisherID") );
-                BookSubjectText.setText( rs.getString("SubjectID") );
+                BookTitleText.setText( rs.getString("bibname") );
+                BookAuthor2Text.setText( rs.getString("author") );
+                BookAccessionIDText.setText( rs.getString("book.acc_id") );
+                BookStatusText.setText( rs.getString("issued") );
+                BookEditionText.setText( rs.getString("genre") );
+                BookPublisherText.setText( rs.getString("publication") );
+                BookSubjectText.setText( rs.getString("sub_name") );
             }
             else{
                 JOptionPane.showMessageDialog( null, "No record found!!" );
@@ -2197,53 +1960,140 @@ public class librarianHome extends javax.swing.JFrame {
         BookCode.setEnabled( false );
         FindBook.setEnabled( false );
         
-        if( BookStatusText.getText().equals("AVAILABLE") )
-        IssueButton.setEnabled( true );
+        if( BookStatusText.getText().equals("true") )
+            IssueButton.setEnabled( true );
         else
-        ReturnButton.setEnabled( true );
+            ReturnButton.setEnabled( true );
     }//GEN-LAST:event_FindBookActionPerformed
 
-    private void MPeriodicityTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MPeriodicityTextActionPerformed
+    private void tvAuthorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tvAuthorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_MPeriodicityTextActionPerformed
-
-    private void MNumberTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MNumberTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_MNumberTextActionPerformed
-
-    private void JNumberTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JNumberTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JNumberTextActionPerformed
+    }//GEN-LAST:event_tvAuthorActionPerformed
 
     public void close(){
         WindowEvent winClosingEvent = new WindowEvent( this , WindowEvent.WINDOW_CLOSING );
         Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosingEvent);
     }
     
+    private void Refresh(){
+        try{
+            String sql = "select * from issued where acc_id='"+StudentCode.getText()+"';";
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            int count = 0;
+            float fine = 0;
+            long days;
+            Date date1 = new Date(),date2;
+
+            if( rs.next() ){
+                Book1AccessionID.setText( rs.getString("acc_id") );
+                Book1IssueDate.setText( rs.getString("issue_date") );
+                Book1DueDate.setText( rs.getString("due_date") );
+                if( !("".equals(Book1DueDate.getText())) ){
+                    date2 = new SimpleDateFormat("yyyy-MM-dd").parse(Book1DueDate.getText());
+                    if( date1.after(date2) ){
+                        days = Math.abs( date2.getTime() - date1.getTime() )/(1000*60*60*24);
+                        fine = ( days + 2 )*10;
+                    }
+                    else
+                        fine = 0;
+                }
+                Book1Fine.setText( String.valueOf(fine) );
+                count++;   
+            }
+            if( rs.next() ){
+                Book2AccessionID.setText( rs.getString("acc_id") );
+                Book2IssueDate.setText( rs.getString("issue_date") );
+                Book2DueDate.setText( rs.getString("due_date") );
+                if( !("".equals(Book2DueDate.getText())) ){
+                    date2 = new SimpleDateFormat("yyyy-MM-dd").parse(Book2DueDate.getText());
+                    if( date1.after(date2) ){
+                        days = Math.abs( date2.getTime() - date1.getTime() )/(1000*60*60*24);
+                        fine = ( days + 2 )*10;
+                    }
+                    else
+                        fine = 0;
+                }
+                Book2Fine.setText( String.valueOf(fine) );
+                count++;   
+            }
+            if( rs.next() ){
+                Book3AccessionID.setText( rs.getString("acc_id") );
+                Book3IssueDate.setText( rs.getString("issue_date") );
+                Book3DueDate.setText( rs.getString("due_date") );
+                if( !("".equals(Book3DueDate.getText())) ){
+                    date2 = new SimpleDateFormat("yyyy-MM-dd").parse(Book3DueDate.getText());
+                    if( date1.after(date2) ){
+                        days = Math.abs( date2.getTime() - date1.getTime() )/(1000*60*60*24);
+                        fine = ( days + 2 )*10;
+                    }
+                    else
+                        fine = 0;
+                }
+                Book1Fine.setText( String.valueOf(fine) );
+                count++;   
+            }
+            
+            fine += Float.valueOf(Book1Fine.getText());
+            fine += Float.valueOf(Book2Fine.getText());
+            TotalFineText.setText( String.valueOf(fine) );
+            IssuedText.setText( String.valueOf(count) );
+            
+            sql = "delete from issued where acc_id='"+tvUserId.getText()+"';";
+            pst = conn.prepareStatement(sql);
+            pst.execute();
+        }catch( Exception e ){
+            JOptionPane.showMessageDialog( null, e );
+        }finally{
+            try{
+                rs.close();
+                pst.close();
+            }catch( Exception e ){
+                JOptionPane.showMessageDialog( null, e );
+            }
+        }
+    }
+    
     private void Update(){
         try{
-            String sql = "update Books set Status='" + BookStatusText.getText() + "' "
-                    + "where AccessionID='"+ BookAccessionIDText.getText() +"';";
+            if(Book1AccessionID.getText()!=null){
+                String sql = "insert into issued values( '" + Book1AccessionID.getText() + "' ,"
+                    + tvUserId.getText() + " ,"
+                    + Book1IssueDate.getText() + " ,"
+                    + Book1DueDate.getText() + " );";
+                pst = conn.prepareStatement( sql );
+                pst.execute();
+                sql = "update book set issued=true where acc_id='"+ Book1AccessionID.getText() +"';";
+                pst = conn.prepareStatement( sql );
+                pst.execute();
+            }
+            if(Book2AccessionID.getText()!=null){
+                String sql = "insert into issued values( '" + Book2AccessionID.getText() + "' ,"
+                    + tvUserId.getText() + " ,"
+                    + Book2IssueDate.getText() + " ,"
+                    + Book2DueDate.getText() + " );";
+                pst = conn.prepareStatement( sql );
+                pst.execute();
+                sql = "update book set issued=true where acc_id='"+ Book2AccessionID.getText() +"';";
+                pst = conn.prepareStatement( sql );
+                pst.execute();
+            }
+            if(Book3AccessionID.getText()!=null){
+                String sql = "insert into issued values( '" + Book3AccessionID.getText() + "' ,"
+                    + tvUserId.getText() + " ,"
+                    + Book3IssueDate.getText() + " ,"
+                    + Book3DueDate.getText() + " );";
+                pst = conn.prepareStatement( sql );
+                pst.execute();
+                sql = "update book set issued=true where acc_id='"+ Book3AccessionID.getText() +"';";
+                pst = conn.prepareStatement( sql );
+                pst.execute();
+            }
+            
+            String sql = "update book set issued= " + BookStatusText.getText() + " where acc_id='"+ BookAccessionIDText.getText() +"';";
             pst = conn.prepareStatement( sql );
             pst.execute();
             
-            sql = "update Students set Book1AccessionID='" + Book1AccessionID.getText() + "' ,"
-                    + "Book1IssueDate='" + Book1IssueDate.getText() + "' ,"
-                    + "Book1DueDate='" + Book1DueDate.getText() + "' ,"
-                    + "Book1Fine='" + Book1Fine.getText() + "' ,"
-                    + "Book2AccessionID='" + Book2AccessionID.getText() + "' ,"
-                    + "Book2IssueDate='" + Book2IssueDate.getText() + "' ,"
-                    + "Book2DueDate='" + Book2DueDate.getText() + "' ,"
-                    + "Book2Fine='" + Book2Fine.getText() + "' ,"
-                    + "Book3AccessionID='" + Book3AccessionID.getText() + "' ,"
-                    + "Book3IssueDate='" + Book3IssueDate.getText() + "' ,"
-                    + "Book3DueDate='" + Book3DueDate.getText() + "' ,"
-                    + "Book3Fine='" + Book3Fine.getText() + "' ,"
-                    + "Fine='" + TotalFineText.getText() + "' ,"
-                    + "Issued='" + IssuedText.getText() + "' "
-                    + "where RollNo='"+RollNoText.getText()+"';";
-            pst = conn.prepareStatement( sql );
-            pst.execute();
         }catch( Exception e ){
             JOptionPane.showMessageDialog( null, e );
         }finally{
@@ -2312,8 +2162,6 @@ public class librarianHome extends javax.swing.JFrame {
     private javax.swing.JLabel BookAuthor1Label;
     private javax.swing.JTextField BookAuthor2Text;
     private javax.swing.JTextField BookCode;
-    private javax.swing.JLabel BookCostLabel;
-    private javax.swing.JTextField BookCostText;
     private javax.swing.JLabel BookEditionLabel;
     private javax.swing.JTextField BookEditionText;
     private javax.swing.JLabel BookFineLabel;
@@ -2325,8 +2173,7 @@ public class librarianHome extends javax.swing.JFrame {
     private javax.swing.JTextField BookSubjectText;
     private javax.swing.JLabel BookTitleLabel;
     private javax.swing.JTextField BookTitleText;
-    private javax.swing.JLabel ClassLabel;
-    private javax.swing.JTextField ClassText;
+    private javax.swing.JTable BooksTable;
     private javax.swing.JLabel DueDateLabel;
     private javax.swing.JButton FindBook;
     private javax.swing.JButton FindStudent;
@@ -2335,59 +2182,23 @@ public class librarianHome extends javax.swing.JFrame {
     private javax.swing.JLabel IssuedLabel;
     private javax.swing.JTextField IssuedText;
     private javax.swing.JButton JAddButton;
-    private javax.swing.JLabel JDATE;
-    private javax.swing.JTextField JDateText;
     private javax.swing.JButton JDeleteButton;
-    private javax.swing.JLabel JEDITION;
     private javax.swing.JButton JEditButton;
-    private javax.swing.JTextField JEditionText;
     private javax.swing.JButton JFindButton;
-    private javax.swing.JLabel JNUMBER;
-    private javax.swing.JTextField JNumberText;
-    private javax.swing.JLabel JOURNAL_ID;
-    private javax.swing.JLabel JPERIODICITY;
-    private javax.swing.JLabel JPUBLISHER;
-    private javax.swing.JTextField JPeriodicityText;
     private javax.swing.JButton JPrintButton;
-    private javax.swing.JTextField JPublisherText;
     private javax.swing.JLabel JTITLE;
     private javax.swing.JTextField JTitleText;
     private javax.swing.JButton JUpdateButton;
-    private javax.swing.JLabel JVENDOR;
-    private javax.swing.JLabel JVOLUME;
-    private javax.swing.JTextField JVendorText;
-    private javax.swing.JTextField JVolumeText;
-    private javax.swing.JTextField JournalIDText;
     private javax.swing.JTable JournalsTable;
-    private javax.swing.JLabel MAGAZINE_ID;
     private javax.swing.JButton MAddButton;
-    private javax.swing.JLabel MDATE;
-    private javax.swing.JTextField MDateText;
     private javax.swing.JButton MDeleteButton;
-    private javax.swing.JLabel MEDITION;
     private javax.swing.JButton MEditButton;
-    private javax.swing.JTextField MEditionText;
     private javax.swing.JButton MFindButton;
-    private javax.swing.JLabel MNUMBER;
-    private javax.swing.JTextField MNumberText;
-    private javax.swing.JLabel MPERIODICITY;
     private javax.swing.JLabel MPUBLISHER;
-    private javax.swing.JTextField MPeriodicityText;
     private javax.swing.JButton MPrintButton;
-    private javax.swing.JTextField MPublisherText;
-    private javax.swing.JLabel MTITLE;
-    private javax.swing.JTextField MTitleText;
     private javax.swing.JButton MUpdateButton;
-    private javax.swing.JLabel MVENDOR;
-    private javax.swing.JLabel MVOLUME;
-    private javax.swing.JTextField MVendorText;
-    private javax.swing.JTextField MVolumeText;
-    private javax.swing.JTextField MagazineIDText;
-    private javax.swing.JTable MagazinesTable;
     private javax.swing.JButton ResetButton;
     private javax.swing.JButton ReturnButton;
-    private javax.swing.JLabel RollNoLabel;
-    private javax.swing.JTextField RollNoText;
     private javax.swing.JTextField StudentCode;
     private javax.swing.JLabel StudentNameLabel;
     private javax.swing.JTextField StudentNameText;
@@ -2411,5 +2222,32 @@ public class librarianHome extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane4;
+    private javax.swing.JTextField tvAccId;
+    private javax.swing.JTextField tvAuthor;
+    private javax.swing.JTextField tvDate;
+    private javax.swing.JTextField tvIssud;
+    private javax.swing.JTextField tvIssue;
+    private javax.swing.JTextField tvJDate;
+    private javax.swing.JTextField tvJPublisher;
+    private javax.swing.JTextField tvJSubject;
+    private javax.swing.JTextField tvJVendor;
+    private javax.swing.JTextField tvJaccId;
+    private javax.swing.JTextField tvName;
+    private javax.swing.JTextField tvPublisher;
+    private javax.swing.JTextField tvSubject;
+    private javax.swing.JTextField tvUserId;
+    private javax.swing.JLabel vAccId;
+    private javax.swing.JLabel vAuthor;
+    private javax.swing.JLabel vDate;
+    private javax.swing.JLabel vIssue;
+    private javax.swing.JLabel vIssued;
+    private javax.swing.JLabel vJAuthor;
+    private javax.swing.JLabel vJDate;
+    private javax.swing.JLabel vJID;
+    private javax.swing.JLabel vJPublisher;
+    private javax.swing.JLabel vJSubject;
+    private javax.swing.JLabel vName;
+    private javax.swing.JLabel vSubject;
+    private javax.swing.JLabel vUserId;
     // End of variables declaration//GEN-END:variables
 }
