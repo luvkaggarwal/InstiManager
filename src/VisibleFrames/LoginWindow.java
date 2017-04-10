@@ -222,7 +222,7 @@ public class LoginWindow extends javax.swing.JFrame {
                     frame.setVisible(true);
                 }else if( rs.getString("job").equals("librarian") ){
                     close();
-                    librarianHome frame = new librarianHome();
+                    librarianHome frame = new librarianHome( "librarian",userid );
                     frame.setLocationRelativeTo(null);
                     frame.setVisible(true);
                 }else {

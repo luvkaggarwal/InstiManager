@@ -28,13 +28,32 @@ public class librarianHome extends javax.swing.JFrame {
     ResultSet rs = null;
     PreparedStatement pst = null;
     private String AccessionID;
+    private static String user;
+    private static String userid;
     public static String column = null;
     public static String value = null;
     /**
      * Creates new form librarianHome
+     * @param user
+     * @param userid
      */
-    public librarianHome() {
+    public librarianHome(String user,String userid) {
         initComponents();
+        this.user = user;
+        this.userid = userid;
+        if( !user.equals("librarian") ){
+            MAddButton.setEnabled(false);
+            JAddButton.setEnabled(false);
+            MEditButton.setEnabled(false);
+            JEditButton.setEnabled(false);
+            MDeleteButton.setEnabled(false);
+            JDeleteButton.setEnabled(false);
+            ReturnButton.setEnabled(false);
+            IssueButton.setEnabled(false);
+        } else{
+            MAddButton.setEnabled(true);
+            JAddButton.setEnabled(true);
+        }
         conn = FunctionClasses.DataBaseConnection.ConnectDB();
         updateTable("book",false);
     }
@@ -1973,6 +1992,11 @@ public class librarianHome extends javax.swing.JFrame {
     public void close(){
         WindowEvent winClosingEvent = new WindowEvent( this , WindowEvent.WINDOW_CLOSING );
         Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosingEvent);
+        if(user.equals("student")){
+            studentHome frame = new studentHome( userid );
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+        }    
     }
     
     private void Refresh(){
@@ -2108,6 +2132,7 @@ public class librarianHome extends javax.swing.JFrame {
     
     /**
      * @param args the command line arguments
+     * @string user
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -2136,7 +2161,7 @@ public class librarianHome extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new librarianHome().setVisible(true);
+                new librarianHome(user,userid).setVisible(true);
                 
             }
         });

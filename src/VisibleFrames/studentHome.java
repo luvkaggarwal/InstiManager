@@ -207,7 +207,7 @@ public class studentHome extends javax.swing.JFrame {
 
     private void LibraryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LibraryButtonActionPerformed
         // TODO add your handling code here:
-        FindBooks frame = new FindBooks();
+        librarianHome frame = new librarianHome( "student",userid );
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }//GEN-LAST:event_LibraryButtonActionPerformed
