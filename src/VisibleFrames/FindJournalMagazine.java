@@ -38,19 +38,12 @@ public class FindJournalMagazine extends javax.swing.JFrame {
 
     private void fillCombos(){
         try{
-            String sql = "select Name from Seller;";
+            String sql = "select sub_name from subjects;";
             pst = conn.prepareStatement( sql );
             rs = pst.executeQuery();
             
             while( rs.next() )
-                VendorCombo.addItem(rs.getString("Name"));
-            
-            sql = "select Name from Publisher;";
-            pst = conn.prepareStatement( sql );
-            rs = pst.executeQuery();
-            
-            while( rs.next() )
-                PublisherCombo.addItem(rs.getString("Name"));
+                cbSubjects.addItem(rs.getString("sub_name"));
             
         }catch( Exception e ){
             JOptionPane.showMessageDialog( null, e );
@@ -76,21 +69,22 @@ public class FindJournalMagazine extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         FindID = new javax.swing.JButton();
-        IDText = new javax.swing.JTextField();
+        etID = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         FindTitle = new javax.swing.JButton();
-        TitleText = new javax.swing.JTextField();
+        etTitle = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         FindVendor = new javax.swing.JButton();
-        VendorCombo = new javax.swing.JComboBox();
+        etAuthor = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         FindPublisher = new javax.swing.JButton();
-        PublisherCombo = new javax.swing.JComboBox();
+        etPublisher = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         FindReceiptDate = new javax.swing.JButton();
+        etDate = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         FindPeriodicity = new javax.swing.JButton();
-        PeriodicityCombo = new javax.swing.JComboBox();
+        cbSubjects = new javax.swing.JComboBox();
         CancelButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -106,12 +100,12 @@ public class FindJournalMagazine extends javax.swing.JFrame {
             }
         });
 
-        IDText.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        IDText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        IDText.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        IDText.addKeyListener(new java.awt.event.KeyAdapter() {
+        etID.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        etID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        etID.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        etID.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                IDTextKeyTyped(evt);
+                etIDKeyTyped(evt);
             }
         });
 
@@ -121,19 +115,21 @@ public class FindJournalMagazine extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(FindID, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
-                    .addComponent(IDText))
+                .addComponent(etID, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(191, 191, 191)
+                .addComponent(FindID, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(61, 61, 61)
-                .addComponent(IDText, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-                .addComponent(FindID, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(etID, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
+                .addComponent(FindID, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("ACCESSION ID", jPanel1);
@@ -147,12 +143,12 @@ public class FindJournalMagazine extends javax.swing.JFrame {
             }
         });
 
-        TitleText.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        TitleText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        TitleText.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        TitleText.addKeyListener(new java.awt.event.KeyAdapter() {
+        etTitle.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        etTitle.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        etTitle.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        etTitle.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                TitleTextKeyTyped(evt);
+                etTitleKeyTyped(evt);
             }
         });
 
@@ -163,18 +159,21 @@ public class FindJournalMagazine extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(FindTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
-                    .addComponent(TitleText, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(etTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(179, 179, 179)
+                        .addComponent(FindTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(67, 67, 67)
-                .addComponent(TitleText, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59)
-                .addComponent(FindTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(etTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53)
+                .addComponent(FindTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("TITLE", jPanel2);
@@ -188,10 +187,12 @@ public class FindJournalMagazine extends javax.swing.JFrame {
             }
         });
 
-        VendorCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        VendorCombo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VendorComboActionPerformed(evt);
+        etAuthor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        etAuthor.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        etAuthor.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        etAuthor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                etAuthorKeyTyped(evt);
             }
         });
 
@@ -199,24 +200,26 @@ public class FindJournalMagazine extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(FindVendor, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
-                    .addComponent(VendorCombo, javax.swing.GroupLayout.Alignment.TRAILING, 0, 502, Short.MAX_VALUE))
+                .addComponent(etAuthor, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(194, 194, 194)
+                .addComponent(FindVendor, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addComponent(VendorCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59)
-                .addComponent(FindVendor, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(68, 68, 68)
+                .addComponent(etAuthor, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54)
+                .addComponent(FindVendor, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("VENDOR", jPanel3);
+        jTabbedPane1.addTab("AUTHOR", jPanel3);
 
         FindPublisher.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         FindPublisher.setText("FIND");
@@ -227,10 +230,12 @@ public class FindJournalMagazine extends javax.swing.JFrame {
             }
         });
 
-        PublisherCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        PublisherCombo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PublisherComboActionPerformed(evt);
+        etPublisher.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        etPublisher.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        etPublisher.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        etPublisher.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                etPublisherKeyTyped(evt);
             }
         });
 
@@ -241,18 +246,21 @@ public class FindJournalMagazine extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(FindPublisher, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
-                    .addComponent(PublisherCombo, javax.swing.GroupLayout.Alignment.TRAILING, 0, 502, Short.MAX_VALUE))
+                    .addComponent(etPublisher, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(182, 182, 182)
+                        .addComponent(FindPublisher, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(70, Short.MAX_VALUE)
-                .addComponent(PublisherCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54)
-                .addComponent(FindPublisher, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(68, 68, 68)
+                .addComponent(etPublisher, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addComponent(FindPublisher, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(80, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("PUBLISHER", jPanel4);
@@ -266,24 +274,40 @@ public class FindJournalMagazine extends javax.swing.JFrame {
             }
         });
 
+        etDate.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        etDate.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        etDate.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        etDate.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                etDateKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(FindReceiptDate, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(etDate, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(185, 185, 185)
+                        .addComponent(FindReceiptDate, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(187, 187, 187)
-                .addComponent(FindReceiptDate, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(66, 66, 66)
+                .addComponent(etDate, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addComponent(FindReceiptDate, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(81, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("RECEIPT DATE", jPanel5);
+        jTabbedPane1.addTab("DATE", jPanel5);
 
         FindPeriodicity.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         FindPeriodicity.setText("FIND");
@@ -294,11 +318,10 @@ public class FindJournalMagazine extends javax.swing.JFrame {
             }
         });
 
-        PeriodicityCombo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        PeriodicityCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "WEEKLY", "FORTNIGHTLY", "MONTHLY", "ANNUALLY" }));
-        PeriodicityCombo.addActionListener(new java.awt.event.ActionListener() {
+        cbSubjects.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        cbSubjects.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PeriodicityComboActionPerformed(evt);
+                cbSubjectsActionPerformed(evt);
             }
         });
 
@@ -309,21 +332,24 @@ public class FindJournalMagazine extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(FindPeriodicity, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
-                    .addComponent(PeriodicityCombo, 0, 502, Short.MAX_VALUE))
+                    .addComponent(cbSubjects, 0, 504, Short.MAX_VALUE)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(188, 188, 188)
+                        .addComponent(FindPeriodicity, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addGap(61, 61, 61)
-                .addComponent(PeriodicityCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65)
-                .addComponent(FindPeriodicity, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(cbSubjects, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(FindPeriodicity, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("PERIODICITY", jPanel6);
+        jTabbedPane1.addTab("SUBJECTS", jPanel6);
 
         CancelButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         CancelButton1.setText("CANCEL");
@@ -337,7 +363,7 @@ public class FindJournalMagazine extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
@@ -362,70 +388,77 @@ public class FindJournalMagazine extends javax.swing.JFrame {
         close();
     }//GEN-LAST:event_CancelButton1ActionPerformed
 
-    private void PeriodicityComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PeriodicityComboActionPerformed
+    private void cbSubjectsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSubjectsActionPerformed
         // TODO add your handling code here:
         FindPeriodicity.setEnabled(true);
-    }//GEN-LAST:event_PeriodicityComboActionPerformed
+    }//GEN-LAST:event_cbSubjectsActionPerformed
 
     private void FindPeriodicityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FindPeriodicityActionPerformed
         // TODO add your handling code here:
-        librarianHome.column = "Periodicity";
-        librarianHome.value = PeriodicityCombo.getSelectedItem().toString();
-        close();
+        try{
+            String sql = "select sub_id from subjects where sub_name = '" + cbSubjects.getSelectedItem().toString() + "';";
+            pst = conn.prepareStatement( sql );
+            rs = pst.executeQuery();
+            
+            if( rs.next() )
+                librarianHome.value = rs.getString("sub_id");
+
+            librarianHome.column = "sub_id";
+            close();
+        }catch( Exception e ){
+            JOptionPane.showMessageDialog( null, e );
+        }finally{
+            try{
+                rs.close();
+                pst.close();    
+            }catch( Exception e ){
+                JOptionPane.showMessageDialog( null, e );
+            }
+        }
     }//GEN-LAST:event_FindPeriodicityActionPerformed
 
     private void FindReceiptDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FindReceiptDateActionPerformed
         // TODO add your handling code here:
-        librarianHome.column = "ReceiptDate";
-        //librarianHome.value = ReceiptDate.getDateFormatString();
+        librarianHome.column = "doa";
+        librarianHome.value = etDate.getText();
         close();
     }//GEN-LAST:event_FindReceiptDateActionPerformed
 
-    private void PublisherComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PublisherComboActionPerformed
-        // TODO add your handling code here:
-        FindPublisher.setEnabled(true);
-    }//GEN-LAST:event_PublisherComboActionPerformed
-
     private void FindPublisherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FindPublisherActionPerformed
         // TODO add your handling code here:
-        librarianHome.column = "PublisherID";
-        librarianHome.value = PublisherCombo.getSelectedItem().toString();
+        librarianHome.column = "publication";
+        librarianHome.value = etPublisher.getText();
         close();
     }//GEN-LAST:event_FindPublisherActionPerformed
 
-    private void VendorComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VendorComboActionPerformed
-        // TODO add your handling code here:
-        FindVendor.setEnabled(true);
-    }//GEN-LAST:event_VendorComboActionPerformed
-
     private void FindVendorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FindVendorActionPerformed
         // TODO add your handling code here:
-        librarianHome.column = "Vendor";
-        librarianHome.value = VendorCombo.getSelectedItem().toString();
+        librarianHome.column = "author";
+        librarianHome.value = etAuthor.getText();
         close();
     }//GEN-LAST:event_FindVendorActionPerformed
 
-    private void TitleTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TitleTextKeyTyped
+    private void etTitleKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_etTitleKeyTyped
         // TODO add your handling code here:
         FindTitle.setEnabled(true);
-    }//GEN-LAST:event_TitleTextKeyTyped
+    }//GEN-LAST:event_etTitleKeyTyped
 
     private void FindTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FindTitleActionPerformed
         // TODO add your handling code here:
-        librarianHome.column = "Title";
-        librarianHome.value = TitleText.getText().toUpperCase();
+        librarianHome.column = "bibname";
+        librarianHome.value = etTitle.getText().toUpperCase();
         close();
     }//GEN-LAST:event_FindTitleActionPerformed
 
-    private void IDTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IDTextKeyTyped
+    private void etIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_etIDKeyTyped
         // TODO add your handling code here:
         FindID.setEnabled(true);
-    }//GEN-LAST:event_IDTextKeyTyped
+    }//GEN-LAST:event_etIDKeyTyped
 
     private void FindIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FindIDActionPerformed
         // TODO add your handling code here:
-        librarianHome.column = "ID";
-        librarianHome.value = IDText.getText().toUpperCase();
+        librarianHome.column = "acc_id";
+        librarianHome.value = etID.getText().toUpperCase();
         close();
     }//GEN-LAST:event_FindIDActionPerformed
 
@@ -433,6 +466,21 @@ public class FindJournalMagazine extends javax.swing.JFrame {
         // TODO add your handling code here:
         FindReceiptDate.setEnabled(true);
     }//GEN-LAST:event_ReceiptDateMouseClicked
+
+    private void etAuthorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_etAuthorKeyTyped
+        // TODO add your handling code here:
+        FindVendor.setEnabled(true);
+    }//GEN-LAST:event_etAuthorKeyTyped
+
+    private void etPublisherKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_etPublisherKeyTyped
+        // TODO add your handling code here:
+        FindPublisher.setEnabled(true);
+    }//GEN-LAST:event_etPublisherKeyTyped
+
+    private void etDateKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_etDateKeyTyped
+        // TODO add your handling code here:
+        FindReceiptDate.setEnabled(true);
+    }//GEN-LAST:event_etDateKeyTyped
 
     /**
      * @param args the command line arguments
@@ -477,11 +525,12 @@ public class FindJournalMagazine extends javax.swing.JFrame {
     private javax.swing.JButton FindReceiptDate;
     private javax.swing.JButton FindTitle;
     private javax.swing.JButton FindVendor;
-    private javax.swing.JTextField IDText;
-    private javax.swing.JComboBox PeriodicityCombo;
-    private javax.swing.JComboBox PublisherCombo;
-    private javax.swing.JTextField TitleText;
-    private javax.swing.JComboBox VendorCombo;
+    private javax.swing.JComboBox cbSubjects;
+    private javax.swing.JTextField etAuthor;
+    private javax.swing.JTextField etDate;
+    private javax.swing.JTextField etID;
+    private javax.swing.JTextField etPublisher;
+    private javax.swing.JTextField etTitle;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

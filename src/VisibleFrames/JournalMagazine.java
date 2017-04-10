@@ -21,6 +21,7 @@ public class JournalMagazine extends javax.swing.JFrame {
     private static String ID;
     private static String Command;
     private static String Type;
+    private static String sub_id;
     Connection conn = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
@@ -48,12 +49,12 @@ public class JournalMagazine extends javax.swing.JFrame {
 
     private void fillCombos(){
         try{
-            String sql = "select Name from Publisher;";
+            String sql = "select sub_name from subjects;";
             pst = conn.prepareStatement( sql );
             rs = pst.executeQuery();
-            
+            cbSubjects.removeAllItems();
             while( rs.next() )
-                PublisherCombo.addItem(rs.getString("Name"));
+                cbSubjects.addItem(rs.getString("sub_name"));
             
         }catch( Exception e ){
             JOptionPane.showMessageDialog( null, e );
@@ -69,20 +70,23 @@ public class JournalMagazine extends javax.swing.JFrame {
     
     private void DisplayData(){
         try{
-            String sql = " select * from " + Type + " where ID = '" + ID + "';";
+            String sql = " select * from bibliography,subjects," + Type + " where acc_id = '" + ID + "' and bibliography.acc_id = "+ Type +".acc_id and bibliography.sub_id = subjects.sub_id ;";
             pst = conn.prepareStatement( sql );
             rs = pst.executeQuery();
             
             if( rs.next() ){
-                IDText.setText( rs.getString("ID") );
-                TitleText.setText( rs.getString("Title") );
-                PublisherCombo.setSelectedItem( rs.getString("PublisherID"));
-                VendorText.setText( rs.getString("Vendor") );
-                EditionText.setText( rs.getString("Edition") );
-                PeriodicityCombo.setSelectedItem( rs.getString("Periodicity") );
-                VolumeText.setText( rs.getString("Volume") );
-                NumberText.setText( rs.getString("Number") );
-                ReceiptDateText.setText( rs.getString("ReceiptDate") );
+                IDText.setText( rs.getString("bibliography.acc_id") );
+                TitleText.setText( rs.getString("bibname") );
+                VendorText.setText( rs.getString("author") );
+                cbSubjects.setSelectedItem( rs.getString("sub_name") );
+                ReceiptDateText.setText( rs.getString("doa") );
+                if( Type.equals("book")){
+                    tvIssue.setText( rs.getString("issued") );
+                    tvIssue.setEnabled(false);
+                } else{
+                    tvIssue.setText( rs.getString("issue_no") );
+                    tvIssue.setEnabled(true);
+                }
             }
         }catch( Exception e ){
             JOptionPane.showMessageDialog( null, e );
@@ -115,21 +119,17 @@ public class JournalMagazine extends javax.swing.JFrame {
         ReceiptDateText = new javax.swing.JTextField();
         IDLabel = new javax.swing.JLabel();
         Vendor = new javax.swing.JLabel();
-        VolumeText = new javax.swing.JTextField();
         VendorText = new javax.swing.JTextField();
-        Number = new javax.swing.JLabel();
         Publisher = new javax.swing.JLabel();
-        Volume = new javax.swing.JLabel();
-        NumberText = new javax.swing.JTextField();
         Title = new javax.swing.JLabel();
         ReceiptDate = new javax.swing.JLabel();
         TitleText = new javax.swing.JTextField();
-        Periodicity = new javax.swing.JLabel();
-        EditionText = new javax.swing.JTextField();
+        vSubject = new javax.swing.JLabel();
         IDText = new javax.swing.JTextField();
-        Edition = new javax.swing.JLabel();
-        PeriodicityCombo = new javax.swing.JComboBox();
-        PublisherCombo = new javax.swing.JComboBox();
+        cbSubjects = new javax.swing.JComboBox();
+        tvPublisher = new javax.swing.JTextField();
+        vIssue = new javax.swing.JLabel();
+        tvIssue = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         Button = new javax.swing.JButton();
         CancelButton = new javax.swing.JButton();
@@ -145,28 +145,14 @@ public class JournalMagazine extends javax.swing.JFrame {
 
         Vendor.setFont(new java.awt.Font("Yu Mincho", 1, 18)); // NOI18N
         Vendor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Vendor.setText("VENDOR");
-
-        VolumeText.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        VolumeText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Vendor.setText("AUTHOR");
 
         VendorText.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         VendorText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        Number.setFont(new java.awt.Font("Yu Mincho", 1, 18)); // NOI18N
-        Number.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Number.setText("NUMBER");
-
         Publisher.setFont(new java.awt.Font("Yu Mincho", 1, 18)); // NOI18N
         Publisher.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Publisher.setText("PUBLISHER");
-
-        Volume.setFont(new java.awt.Font("Yu Mincho", 1, 18)); // NOI18N
-        Volume.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Volume.setText("VOLUME");
-
-        NumberText.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        NumberText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         Title.setFont(new java.awt.Font("Yu Mincho", 1, 18)); // NOI18N
         Title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -179,28 +165,24 @@ public class JournalMagazine extends javax.swing.JFrame {
         TitleText.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         TitleText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        Periodicity.setFont(new java.awt.Font("Yu Mincho", 1, 18)); // NOI18N
-        Periodicity.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Periodicity.setText("PERIODICITY");
-
-        EditionText.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        EditionText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        EditionText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EditionTextActionPerformed(evt);
-            }
-        });
+        vSubject.setFont(new java.awt.Font("Yu Mincho", 1, 18)); // NOI18N
+        vSubject.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        vSubject.setText("SUBJECT");
 
         IDText.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         IDText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        Edition.setFont(new java.awt.Font("Yu Mincho", 1, 18)); // NOI18N
-        Edition.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Edition.setText("EDITION");
+        cbSubjects.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
 
-        PeriodicityCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "WEEKLY", "FORTNIGHTLY", "MONTHLY", "QUARTERLY", "BIANNUALY", "ANNUALY", " " }));
+        tvPublisher.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        tvPublisher.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        PublisherCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        vIssue.setFont(new java.awt.Font("Yu Mincho", 1, 18)); // NOI18N
+        vIssue.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        vIssue.setText("ISSUE");
+
+        tvIssue.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        tvIssue.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -208,27 +190,26 @@ public class JournalMagazine extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(ReceiptDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Number, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Volume, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(IDLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Vendor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Edition, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Publisher, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Periodicity, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(VolumeText)
-                    .addComponent(ReceiptDateText)
-                    .addComponent(NumberText)
-                    .addComponent(EditionText)
-                    .addComponent(VendorText)
-                    .addComponent(IDText)
-                    .addComponent(TitleText)
-                    .addComponent(PeriodicityCombo, 0, 500, Short.MAX_VALUE)
-                    .addComponent(PublisherCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(vIssue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ReceiptDate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Title, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(IDLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Vendor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Publisher, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                    .addComponent(vSubject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(ReceiptDateText)
+                            .addComponent(VendorText)
+                            .addComponent(IDText)
+                            .addComponent(TitleText)
+                            .addComponent(cbSubjects, 0, 500, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(tvPublisher, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(tvIssue))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -245,32 +226,40 @@ public class JournalMagazine extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Publisher, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PublisherCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tvPublisher))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Vendor, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(VendorText))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Periodicity, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PeriodicityCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Edition, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(EditionText))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Volume, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(VolumeText))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Number, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(NumberText))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(vSubject, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbSubjects, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ReceiptDate, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ReceiptDateText))
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(vIssue, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tvIssue))
+                .addGap(20, 20, 20))
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         Button.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
@@ -293,7 +282,7 @@ public class JournalMagazine extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(201, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Button, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(CancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -309,83 +298,66 @@ public class JournalMagazine extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void EditionTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditionTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EditionTextActionPerformed
-
     private String EditQuery(){
-        return "update " + Type + " set ID='" + IDText.getText() + "' ,"
-                    + "Title='" + TitleText.getText() + "' ,"
-                    + "PublisherID='" + PublisherCombo.getSelectedItem().toString() + "' ,"
-                    + "Vendor='" + VendorText.getText() + "' ,"
-                    + "Periodicity='" + PeriodicityCombo.getSelectedItem().toString() + "' ,"
-                    + "Edition='" + EditionText.getText() + "' ,"
-                    + "Volume='" + VolumeText.getText() + "' ,"
-                    + "Number='" + NumberText.getText() + "' ,"
-                    + "ReceiptDate='" + ReceiptDateText.getText() + "' "
-                    + "where ID='" + ID + "';";
+        return "update bibliography set acc_id='" + IDText.getText() + "' ,"
+                    + "bibname='" + TitleText.getText() + "' ,"
+                    + "publication='" + tvPublisher.getText() + "' ,"
+                    + "author='" + VendorText.getText() + "' ,"
+                    + "sub_id='" + sub_id + "' ,"
+                    + "doa='" + ReceiptDateText.getText() + "' "
+                    + "where acc_id='" + ID + "';";
     }
 
     private String AddQuery(){
-        return "Insert into " + Type + " (ID,Title,PublisherID,Vendor,Periodicity,Edition,Volume,Number,ReceiptDate) "
+        return "Insert into " + Type + " (acc_id,bibname,publication,author,sub_id,doa) "
                 + "values (?,?,?,?,?,?,?,?,?);";
     }
     
     private void ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonActionPerformed
         // TODO add your handling code here:
         try{
-            String sql;
+            String sql = " select sub_id from subjects where sub_name = '" + cbSubjects.getSelectedItem().toString() + "';";
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            if( rs.next() )
+                sub_id = rs.getString("sub_id");
+
             if( Button.getText().equals("EDIT") ){
                 sql = EditQuery();
                 pst = conn.prepareStatement(sql);
-            }
-            else if( Button.getText().equals("ADD") ){
+            } else if( Button.getText().equals("ADD") ){
                 sql = AddQuery();
                 pst = conn.prepareStatement(sql);
                 pst.setString( 1, IDText.getText() );
                 pst.setString( 2, TitleText.getText() );
-                pst.setString( 3, PublisherCombo.getSelectedItem().toString() );
+                pst.setString( 3, tvPublisher.getText() );
                 pst.setString( 4, VendorText.getText() );
-                pst.setString( 5, PeriodicityCombo.getSelectedItem().toString() );
-                pst.setString( 6, EditionText.getText() );
-                pst.setString( 7, VolumeText.getText() );
-                pst.setString( 8, NumberText.getText() );
-                pst.setString( 9, ReceiptDateText.getText() );
+                pst.setString( 5, sub_id );
+                pst.setString( 6, ReceiptDateText.getText() );
             }
 
             pst.execute();
@@ -445,26 +417,22 @@ public class JournalMagazine extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Button;
     private javax.swing.JButton CancelButton;
-    private javax.swing.JLabel Edition;
-    private javax.swing.JTextField EditionText;
     private javax.swing.JLabel IDLabel;
     private javax.swing.JTextField IDText;
-    private javax.swing.JLabel Number;
-    private javax.swing.JTextField NumberText;
-    private javax.swing.JLabel Periodicity;
-    private javax.swing.JComboBox PeriodicityCombo;
     private javax.swing.JLabel Publisher;
-    private javax.swing.JComboBox PublisherCombo;
     private javax.swing.JLabel ReceiptDate;
     private javax.swing.JTextField ReceiptDateText;
     private javax.swing.JLabel Title;
     private javax.swing.JTextField TitleText;
     private javax.swing.JLabel Vendor;
     private javax.swing.JTextField VendorText;
-    private javax.swing.JLabel Volume;
-    private javax.swing.JTextField VolumeText;
+    private javax.swing.JComboBox cbSubjects;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JTextField tvIssue;
+    private javax.swing.JTextField tvPublisher;
+    private javax.swing.JLabel vIssue;
+    private javax.swing.JLabel vSubject;
     // End of variables declaration//GEN-END:variables
 }

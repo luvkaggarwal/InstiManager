@@ -1530,9 +1530,9 @@ public class librarianHome extends javax.swing.JFrame {
         // TODO add your handling code here:
         jEmpty();
         if( column == null )
-        updateTable( "journal" , false );
+            updateTable( "journal" , false );
         else
-        updateTable( "journal" , true );
+            updateTable( "journal" , true );
         column = null;
         value = null;
         JFindButton.setEnabled(true);
@@ -1667,9 +1667,9 @@ public class librarianHome extends javax.swing.JFrame {
         // TODO add your handling code here:
         mEmpty();
         if( column == null )
-        updateTable( "book" , false );
+            updateTable( "book" , false );
         else
-        updateTable( "book" , true );
+            updateTable( "book" , true );
         column = null;
         value = null;
         MFindButton.setEnabled(true);
