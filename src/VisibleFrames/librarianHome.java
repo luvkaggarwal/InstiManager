@@ -1992,11 +1992,11 @@ public class librarianHome extends javax.swing.JFrame {
     public void close(){
         WindowEvent winClosingEvent = new WindowEvent( this , WindowEvent.WINDOW_CLOSING );
         Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosingEvent);
-        if(user.equals("student")){
+        /*if(user.equals("student")){
             studentHome frame = new studentHome( userid );
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
-        }    
+        }*/    
     }
     
     private void Refresh(){
