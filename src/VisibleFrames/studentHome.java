@@ -34,7 +34,7 @@ public class studentHome extends javax.swing.JFrame {
 
         jPanel10 = new javax.swing.JPanel();
         detailsButton = new javax.swing.JButton();
-        MentorButton = new javax.swing.JButton();
+        btInstitute = new javax.swing.JButton();
         LibraryButton = new javax.swing.JButton();
         NoticeButton = new javax.swing.JButton();
         TaskButton = new javax.swing.JButton();
@@ -59,17 +59,17 @@ public class studentHome extends javax.swing.JFrame {
             }
         });
 
-        MentorButton.setBackground(new java.awt.Color(0, 0, 102));
-        MentorButton.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        MentorButton.setForeground(new java.awt.Color(255, 255, 255));
-        MentorButton.setText("MENTOR");
-        MentorButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        MentorButton.setFocusable(false);
-        MentorButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        MentorButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        MentorButton.addActionListener(new java.awt.event.ActionListener() {
+        btInstitute.setBackground(new java.awt.Color(0, 0, 102));
+        btInstitute.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        btInstitute.setForeground(new java.awt.Color(255, 255, 255));
+        btInstitute.setText("INSTITUTE");
+        btInstitute.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btInstitute.setFocusable(false);
+        btInstitute.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btInstitute.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btInstitute.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MentorButtonActionPerformed(evt);
+                btInstituteActionPerformed(evt);
             }
         });
 
@@ -144,7 +144,7 @@ public class studentHome extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                         .addComponent(detailsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(MentorButton, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btInstitute, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                         .addComponent(ReportButton, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
@@ -156,7 +156,7 @@ public class studentHome extends javax.swing.JFrame {
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(MentorButton, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+                    .addComponent(btInstitute, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
                     .addComponent(detailsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -200,10 +200,12 @@ public class studentHome extends javax.swing.JFrame {
         frame.setVisible(true);
     }//GEN-LAST:event_detailsButtonActionPerformed
 
-    private void MentorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MentorButtonActionPerformed
+    private void btInstituteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInstituteActionPerformed
         // TODO add your handling code here:
-      
-    }//GEN-LAST:event_MentorButtonActionPerformed
+        InstituteDetails frame = new InstituteDetails();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }//GEN-LAST:event_btInstituteActionPerformed
 
     private void LibraryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LibraryButtonActionPerformed
         // TODO add your handling code here:
@@ -224,7 +226,9 @@ public class studentHome extends javax.swing.JFrame {
 
     private void ReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportButtonActionPerformed
         // TODO add your handling code here:
-        
+        ComplaintBox frame = new ComplaintBox(userid);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
     }//GEN-LAST:event_ReportButtonActionPerformed
 
     /**
@@ -264,10 +268,10 @@ public class studentHome extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton LibraryButton;
-    private javax.swing.JButton MentorButton;
     private javax.swing.JButton NoticeButton;
     private javax.swing.JButton ReportButton;
     private javax.swing.JButton TaskButton;
+    private javax.swing.JButton btInstitute;
     private javax.swing.JButton detailsButton;
     private javax.swing.JPanel jPanel10;
     // End of variables declaration//GEN-END:variables
