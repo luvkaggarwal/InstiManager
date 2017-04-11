@@ -3,9 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/LUV/Documents/NetBeansProjects/Project/src/VisibleFrames/LoginWindow.java</file>
-            <file>file:/C:/Users/LUV/Documents/NetBeansProjects/Project/src/VisibleFrames/librarianHome.java</file>
-            <file>file:/C:/Users/LUV/Documents/NetBeansProjects/Project/src/FunctionClasses/DataBaseConnection.java</file>
+            <file>file:/Users/luv/Documents/Java/Project/src/VisibleFrames/LoginWindow.java</file>
+            <file>file:/Users/luv/Documents/Java/Project/src/VisibleFrames/librarianHome.java</file>
+            <file>file:/Users/luv/Documents/Java/Project/src/VisibleFrames/ComplaintBox.java</file>
+            <file>file:/Users/luv/Documents/Java/Project/src/VisibleFrames/FindJournalMagazine.java</file>
+            <file>file:/Users/luv/Documents/Java/Project/src/VisibleFrames/FindBooks.java</file>
+            <file>file:/Users/luv/Documents/Java/Project/src/VisibleFrames/studentHome.java</file>
+            <file>file:/Users/luv/Documents/Java/Project/src/VisibleFrames/JournalMagazine.java</file>
         </group>
     </open-files>
 </project-private>

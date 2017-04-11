@@ -61,7 +61,7 @@ public class librarianHome extends javax.swing.JFrame {
     private void updateTable( String Table , boolean number ){
         
         try{
-            String sql = "select book.acc_id as Accession ID,"
+            String sql = "select bibliography.acc_id as AccessionID,"
                     + "bibname as Title,"
                     + "author,"
                     + "publication from bibliography, " + Table +" where bibliography.acc_id = " + Table + ".acc_id";
@@ -228,7 +228,7 @@ public class librarianHome extends javax.swing.JFrame {
         JEditButton = new javax.swing.JButton();
         JPrintButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setForeground(new java.awt.Color(0, 0, 0));
 
@@ -254,7 +254,7 @@ public class librarianHome extends javax.swing.JFrame {
 
         FindBook.setBackground(new java.awt.Color(0, 0, 102));
         FindBook.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        FindBook.setForeground(new java.awt.Color(0, 0, 153));
+        FindBook.setForeground(new java.awt.Color(255, 255, 255));
         FindBook.setText("FIND BOOK");
         FindBook.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -264,7 +264,7 @@ public class librarianHome extends javax.swing.JFrame {
 
         FindStudent.setBackground(new java.awt.Color(0, 0, 102));
         FindStudent.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        FindStudent.setForeground(new java.awt.Color(0, 0, 102));
+        FindStudent.setForeground(new java.awt.Color(255, 255, 255));
         FindStudent.setText("FIND STUDENT");
         FindStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -277,14 +277,12 @@ public class librarianHome extends javax.swing.JFrame {
         BookCode.setForeground(new java.awt.Color(255, 255, 255));
         BookCode.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         BookCode.setToolTipText("Book Barcode");
-        BookCode.setEnabled(false);
 
         StudentCode.setBackground(new java.awt.Color(0, 0, 102));
         StudentCode.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         StudentCode.setForeground(new java.awt.Color(255, 255, 255));
         StudentCode.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         StudentCode.setToolTipText("Student Barcode");
-        StudentCode.setEnabled(false);
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -825,7 +823,7 @@ public class librarianHome extends javax.swing.JFrame {
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/VisibleFrames/Books-2-icon.png")), jPanel1); // NOI18N
+        jTabbedPane1.addTab("ISSUE/RETURN", jPanel1);
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 102));
         jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 102), 4, true));
@@ -1492,7 +1490,7 @@ public class librarianHome extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/VisibleFrames/books-icon.png")), jPanel2); // NOI18N
+        jTabbedPane1.addTab("OPAC", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1628,7 +1626,7 @@ public class librarianHome extends javax.swing.JFrame {
             + "doa,"
             + "issue_no,"
             + "sub_name"
-            + "from bibliography,journal,subjects where bibliography.acc_id='"+AccessionID+"' and bibliography.acc_id = journal.acc_id and bibliography.sub_id = subjects.sub_id;";
+            + " from bibliography,journal,subjects where bibliography.acc_id='"+AccessionID+"' and bibliography.acc_id = journal.acc_id and bibliography.sub_id = subjects.sub_id;";
 
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
@@ -1759,20 +1757,20 @@ public class librarianHome extends javax.swing.JFrame {
         try{
             int row = BooksTable.getSelectedRow();
             AccessionID = BooksTable.getModel().getValueAt(row, 0).toString();
-            String sql = "select journal.acc_id,"
+            String sql = "select book.acc_id,"
                     + "bibname,"
                     + "author,"
                     + "publication,"
                     + "doa,"
                     + "issued,"
                     + "sub_name"
-                    + "from bibliography,book,subjects where bibliography.acc_id='"+AccessionID+"' and bibliography.acc_id = book.acc_id and bibliography.sub_id = subjects.sub_id;";
+                    + " from bibliography,book,subjects where bibliography.acc_id='"+AccessionID+"' and bibliography.acc_id = book.acc_id and bibliography.sub_id = subjects.sub_id;";
 
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
 
             if( rs.next() ){
-                tvAccId.setText( rs.getString("journal.acc_id") );
+                tvAccId.setText( rs.getString("book.acc_id") );
                 tvName.setText( rs.getString("bibname") );
                 tvPublisher.setText( rs.getString("publication") );
                 tvIssud.setText( rs.getString("issued") );
@@ -1797,7 +1795,7 @@ public class librarianHome extends javax.swing.JFrame {
 
     private void ResetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetButtonActionPerformed
         // TODO add your handling code here:
-        Update();
+        //Update();
         BookTitleText.setText( null );
         BookAuthor2Text.setText( null );
         BookAccessionIDText.setText( null );
@@ -1828,7 +1826,9 @@ public class librarianHome extends javax.swing.JFrame {
         IssueButton.setEnabled(false);
         ReturnButton.setEnabled(false);
         BookCode.setText( null );
+        BookCode.setEnabled(true);
         StudentCode.setText( null );
+        StudentCode.setEnabled(true);
     }//GEN-LAST:event_ResetButtonActionPerformed
 
     private void ReturnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnButtonActionPerformed
@@ -1879,7 +1879,7 @@ public class librarianHome extends javax.swing.JFrame {
     private void IssueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IssueButtonActionPerformed
         // TODO add your handling code here:
         if( Integer.valueOf( IssuedText.getText() ) == 3 )
-        JOptionPane.showMessageDialog( null, "Already Issued 3 Books!!" );
+            JOptionPane.showMessageDialog( null, "Already Issued 3 Books!!" );
         else{
             int number = Integer.valueOf( IssuedText.getText() );
             number ++;
@@ -1888,8 +1888,8 @@ public class librarianHome extends javax.swing.JFrame {
             cal.add( Calendar.DATE , 15 );
             switch( number ){
                 case 1 :Book1AccessionID.setText( BookAccessionIDText.getText() );
-                Book1IssueDate.setText( String.valueOf( new Date() ) );
-                Book1DueDate.setText( String.valueOf( cal.getTime() ) );
+                Book1IssueDate.setText( new SimpleDateFormat("yyyy-MM-dd").format( new Date() ) );
+                Book1DueDate.setText( new SimpleDateFormat("yyyy-MM-dd").format( cal.getTime() ) );
                 Book1Fine.setText( null );
                 break;
                 case 2 :Book2AccessionID.setText( BookAccessionIDText.getText() );
@@ -1898,8 +1898,8 @@ public class librarianHome extends javax.swing.JFrame {
                 Book2Fine.setText( null );
                 break;
                 case 3 :Book3AccessionID.setText( BookAccessionIDText.getText() );
-                Book3IssueDate.setText( String.valueOf( new Date() ) );
-                Book3DueDate.setText( String.valueOf( cal.getTime() ) );
+                Book3IssueDate.setText( new SimpleDateFormat("yyyy-MM-dd").format( new Date() ) );
+                Book3DueDate.setText( new SimpleDateFormat("yyyy-MM-dd").format( cal.getTime() ) );
                 Book3Fine.setText( null );
                 break;
             }
@@ -1919,11 +1919,11 @@ public class librarianHome extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         try{
-            String sql = "select bibname from user where acc_id='"+StudentCode.getText()+"';";
+            String sql = "select concat(fname,' ',lname) as userName from user where u_id='"+StudentCode.getText()+"';";
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
             if( rs.next() ){
-                StudentNameText.setText( rs.getString("bibname") );
+                StudentNameText.setText( rs.getString("userName") );
                 tvUserId.setText( StudentCode.getText() );
             }
             Refresh();
@@ -1947,7 +1947,7 @@ public class librarianHome extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         try{
-            String sql = "select bibname,author,book.acc_id,issued,genre,publication,sub_name from bibliography,book,subjects where acc_id='"+BookCode.getText()+"' and book.acc_id = bibliography.acc_id and bibliography.sub_id = subjects.sub_id;";
+            String sql = "select bibname,author,book.acc_id,issued,genre,publication,sub_name from bibliography,book,subjects where bibliography.acc_id='"+BookCode.getText()+"' and book.acc_id = bibliography.acc_id and bibliography.sub_id = subjects.sub_id;";
 
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
@@ -1979,7 +1979,7 @@ public class librarianHome extends javax.swing.JFrame {
         BookCode.setEnabled( false );
         FindBook.setEnabled( false );
         
-        if( BookStatusText.getText().equals("true") )
+        if( BookStatusText.getText().equals("0") )
             IssueButton.setEnabled( true );
         else
             ReturnButton.setEnabled( true );
@@ -2001,7 +2001,7 @@ public class librarianHome extends javax.swing.JFrame {
     
     private void Refresh(){
         try{
-            String sql = "select * from issued where acc_id='"+StudentCode.getText()+"';";
+            String sql = "select * from issued where u_id='"+StudentCode.getText()+"';";
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
             int count = 0;
@@ -2039,6 +2039,7 @@ public class librarianHome extends javax.swing.JFrame {
                         fine = 0;
                 }
                 Book2Fine.setText( String.valueOf(fine) );
+                fine += Float.valueOf(Book1Fine.getText());
                 count++;   
             }
             if( rs.next() ){
@@ -2056,10 +2057,10 @@ public class librarianHome extends javax.swing.JFrame {
                 }
                 Book1Fine.setText( String.valueOf(fine) );
                 count++;   
+                fine += Float.valueOf(Book1Fine.getText());
+                fine += Float.valueOf(Book2Fine.getText());
             }
             
-            fine += Float.valueOf(Book1Fine.getText());
-            fine += Float.valueOf(Book2Fine.getText());
             TotalFineText.setText( String.valueOf(fine) );
             IssuedText.setText( String.valueOf(count) );
             
@@ -2081,10 +2082,10 @@ public class librarianHome extends javax.swing.JFrame {
     private void Update(){
         try{
             if(Book1AccessionID.getText()!=null){
-                String sql = "insert into issued values( '" + Book1AccessionID.getText() + "' ,"
-                    + tvUserId.getText() + " ,"
-                    + Book1IssueDate.getText() + " ,"
-                    + Book1DueDate.getText() + " );";
+                String sql = "insert into issued values( '" + Book1AccessionID.getText() + "' ,'"
+                    + tvUserId.getText() + "' ,'"
+                    + Book1IssueDate.getText() + "' ,'"
+                    + Book1DueDate.getText() + "' );";
                 pst = conn.prepareStatement( sql );
                 pst.execute();
                 sql = "update book set issued=true where acc_id='"+ Book1AccessionID.getText() +"';";
@@ -2092,10 +2093,10 @@ public class librarianHome extends javax.swing.JFrame {
                 pst.execute();
             }
             if(Book2AccessionID.getText()!=null){
-                String sql = "insert into issued values( '" + Book2AccessionID.getText() + "' ,"
-                    + tvUserId.getText() + " ,"
-                    + Book2IssueDate.getText() + " ,"
-                    + Book2DueDate.getText() + " );";
+                String sql = "insert into issued values( '" + Book2AccessionID.getText() + "' ,'"
+                    + tvUserId.getText() + "' ,'"
+                    + Book2IssueDate.getText() + "' ,'"
+                    + Book2DueDate.getText() + "' );";
                 pst = conn.prepareStatement( sql );
                 pst.execute();
                 sql = "update book set issued=true where acc_id='"+ Book2AccessionID.getText() +"';";
@@ -2103,10 +2104,10 @@ public class librarianHome extends javax.swing.JFrame {
                 pst.execute();
             }
             if(Book3AccessionID.getText()!=null){
-                String sql = "insert into issued values( '" + Book3AccessionID.getText() + "' ,"
-                    + tvUserId.getText() + " ,"
-                    + Book3IssueDate.getText() + " ,"
-                    + Book3DueDate.getText() + " );";
+                String sql = "insert into issued values( '" + Book3AccessionID.getText() + "' ,'"
+                    + tvUserId.getText() + "' ,'"
+                    + Book3IssueDate.getText() + "' ,'"
+                    + Book3DueDate.getText() + "' );";
                 pst = conn.prepareStatement( sql );
                 pst.execute();
                 sql = "update book set issued=true where acc_id='"+ Book3AccessionID.getText() +"';";

@@ -93,6 +93,7 @@ public class studentHome extends javax.swing.JFrame {
         NoticeButton.setForeground(new java.awt.Color(255, 255, 255));
         NoticeButton.setText("NOTICES");
         NoticeButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        NoticeButton.setEnabled(false);
         NoticeButton.setFocusable(false);
         NoticeButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         NoticeButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -107,6 +108,7 @@ public class studentHome extends javax.swing.JFrame {
         TaskButton.setForeground(new java.awt.Color(255, 255, 255));
         TaskButton.setText("TASKS");
         TaskButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        TaskButton.setEnabled(false);
         TaskButton.setFocusable(false);
         TaskButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         TaskButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);

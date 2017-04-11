@@ -281,7 +281,7 @@ public class InstituteDetails extends javax.swing.JFrame {
 
         btReturn.setBackground(new java.awt.Color(0, 0, 102));
         btReturn.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btReturn.setForeground(new java.awt.Color(0, 0, 102));
+        btReturn.setForeground(new java.awt.Color(255, 255, 255));
         btReturn.setText("RETURN");
         btReturn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -630,21 +630,6 @@ public class InstituteDetails extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton IssueButton;
-    private javax.swing.JButton IssueButton1;
-    private javax.swing.JButton IssueButton3;
-    private javax.swing.JButton IssueButton4;
-    private javax.swing.JButton IssueButton5;
-    private javax.swing.JButton ResetButton;
-    private javax.swing.JButton ResetButton1;
-    private javax.swing.JButton ResetButton3;
-    private javax.swing.JButton ResetButton4;
-    private javax.swing.JButton ResetButton5;
-    private javax.swing.JButton ReturnButton;
-    private javax.swing.JButton ReturnButton1;
-    private javax.swing.JButton ReturnButton3;
-    private javax.swing.JButton ReturnButton4;
-    private javax.swing.JButton ReturnButton5;
     private javax.swing.JButton btReturn;
     private javax.swing.JComboBox cbCourse;
     private javax.swing.JComboBox cbDepartment;
@@ -654,12 +639,7 @@ public class InstituteDetails extends javax.swing.JFrame {
     private javax.swing.JComboBox cbSubjects;
     private javax.swing.JComboBox cbTeachers;
     private javax.swing.JComboBox cbUsers;
-    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel20;
-    private javax.swing.JPanel jPanel22;
-    private javax.swing.JPanel jPanel23;
-    private javax.swing.JPanel jPanel24;
     private javax.swing.JPanel jPanel25;
     private javax.swing.JLabel lAddress;
     private javax.swing.JLabel lCourse;

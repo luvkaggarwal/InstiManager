@@ -192,45 +192,18 @@ public class LoginWindow extends javax.swing.JFrame {
             if( rs.next() ){
                 //JOptionPane.showMessageDialog( null, "Username and Password is correct" );
                 //StartNewWindow and set its visibility = true
-                if( rs.getString("job").equals("student") )
-                {
+                if( rs.getString("job").equals("librarian") ){
+                    close();
+                    librarianHome frame = new librarianHome( "librarian",userid );
+                    frame.setLocationRelativeTo(null);
+                    frame.setVisible(true);
+                } else {
                     close();
                     studentHome frame = new studentHome( userid );
                     frame.setLocationRelativeTo(null);
                     frame.setVisible(true);
                 }
-                else if( rs.getString("job").equals("teacher") ){
-                    close();
-                    teacherHome frame = new teacherHome();
-                    frame.setLocationRelativeTo(null);
-                    frame.setVisible(true);
-                }
-                else if( rs.getString("job").equals("parent") ){
-                    close();
-                    parentHome frame = new parentHome();
-                    frame.setLocationRelativeTo(null);
-                    frame.setVisible(true);
-                }else if( rs.getString("job").equals("accounts") ){
-                    close();
-                    accountsHome frame = new accountsHome();
-                    frame.setLocationRelativeTo(null);
-                    frame.setVisible(true);
-                }else if( rs.getString("job").equals("management") ){
-                    close();
-                    adminHome frame = new adminHome();
-                    frame.setLocationRelativeTo(null);
-                    frame.setVisible(true);
-                }else if( rs.getString("job").equals("librarian") ){
-                    close();
-                    librarianHome frame = new librarianHome( "librarian",userid );
-                    frame.setLocationRelativeTo(null);
-                    frame.setVisible(true);
-                }else {
-                    close();
-                    logisticsHome frame = new logisticsHome();
-                    frame.setLocationRelativeTo(null);
-                    frame.setVisible(true);
-                }
+                
             }
             else
                 JOptionPane.showMessageDialog( null, "Username and Password is not correct" );

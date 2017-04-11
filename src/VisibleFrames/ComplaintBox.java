@@ -59,14 +59,14 @@ public class ComplaintBox extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         etComplaint = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 102));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED), "COMPLAINT", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 24), new java.awt.Color(255, 255, 255))); // NOI18N
 
         btCancel.setBackground(new java.awt.Color(0, 0, 102));
         btCancel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btCancel.setForeground(new java.awt.Color(0, 0, 153));
+        btCancel.setForeground(new java.awt.Color(255, 255, 255));
         btCancel.setText("CANCEL");
         btCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,7 +76,7 @@ public class ComplaintBox extends javax.swing.JFrame {
 
         btReport.setBackground(new java.awt.Color(0, 0, 102));
         btReport.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btReport.setForeground(new java.awt.Color(0, 0, 102));
+        btReport.setForeground(new java.awt.Color(255, 255, 255));
         btReport.setText("REPORT");
         btReport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -201,7 +201,6 @@ public class ComplaintBox extends javax.swing.JFrame {
 
     private void btReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btReportActionPerformed
         // TODO add your handling code here:
-
         try{
             if( tvCategory.getText() == null )
                 JOptionPane.showMessageDialog( null, "Must enter category, e.g. Peon,Painter,Electrician,etc" );
@@ -218,8 +217,8 @@ public class ComplaintBox extends javax.swing.JFrame {
                 pst = conn.prepareStatement(sql);
                 pst.execute();
                 JOptionPane.showMessageDialog( null, "Complaint successfully Registered" );
-                tvCategory.setText(null);
-                etComplaint.setText(null);
+                tvCategory.setText(" ");
+                etComplaint.setText(" ");
             }
         }catch( Exception e ){
             JOptionPane.showMessageDialog( null, e );
